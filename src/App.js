@@ -7,19 +7,26 @@ import About from './components/About'
 import Blogs from './components/Blogs'
 import Treatment from './components/Treatment'
 import Contact from './components/Contact'
+import Dashboard from './components/Dashboard'
+import Footer from './components/Footer'
+import Login from './components/Login'
+import Register from './components/Register'
 import Error from './components/Error'
+import { useLocation } from "react-router-dom";
+import '../node_modules/flowbite/dist/flowbite';
+
 
 function App() {
+  let location = useLocation();
   return (
     <>
     <API>
       <DATA>
         <Navbar></Navbar>
-        <h1 class="w-screen h-screen text-3xl font-bold flex justify-center items-center">
-        Samarpitam <br />
-        Dr. Sumeet Saini
-       </h1>
-        <Outlet />
+        <div className="mt-[72px] md:mt-[68px] overflow-x-hidden">
+        {location.pathname === '/' ? <Dashboard/> : <Outlet />}
+        <Footer></Footer>
+        </div>
       </DATA>
     </API>
     </>
@@ -27,6 +34,7 @@ function App() {
 }
 
 const router = createBrowserRouter([
+
   {
     path: "/",
     element: <App/>,
@@ -50,6 +58,18 @@ const router = createBrowserRouter([
       },
     ]
   },
+  {
+    path: '/Login',
+    element: <API><DATA><Login/></DATA></API>,
+    errorElement: <Error />
+  },
+  {
+    path: '/Register',
+    element: <API><DATA><Register/></DATA></API>,
+    errorElement: <Error />
+  },
 ]);
 
 export default router;
+
+
