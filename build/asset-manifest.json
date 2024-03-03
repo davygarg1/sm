@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d284403a.css",
+    "main.js": "/static/js/main.9f49cbc7.js",
+    "static/media/6.png": "/static/media/6.f5293068d9c984a26ea9.png",
+    "static/media/4.png": "/static/media/4.65f9d12a9486e059b367.png",
+    "static/media/5.png": "/static/media/5.95856b3bd77e0a4fd286.png",
+    "static/media/3.png": "/static/media/3.266837cd1dd72426bd54.png",
+    "static/media/2.png": "/static/media/2.d0d233b995e1bab485de.png",
+    "static/media/Contact.jpg": "/static/media/Contact.6ddce070699008949c95.jpg",
+    "static/media/1.png": "/static/media/1.bde33c13dfaba1f8bab6.png",
+    "static/media/BODY.png": "/static/media/BODY.998eb2a0e6491573fff4.png",
+    "static/media/DIGESTIVE.png": "/static/media/DIGESTIVE.998eb2a0e6491573fff4.png",
+    "static/media/GYANAECOLOGICAL.png": "/static/media/GYANAECOLOGICAL.998eb2a0e6491573fff4.png",
+    "static/media/HORMONAL.png": "/static/media/HORMONAL.998eb2a0e6491573fff4.png",
+    "static/media/KIDNEY.png": "/static/media/KIDNEY.998eb2a0e6491573fff4.png",
+    "static/media/LIVER.png": "/static/media/LIVER.998eb2a0e6491573fff4.png",
+    "static/media/NEUROLOGICAL.png": "/static/media/NEUROLOGICAL.998eb2a0e6491573fff4.png",
+    "static/media/RESPIRATORY.png": "/static/media/RESPIRATORY.998eb2a0e6491573fff4.png",
+    "static/media/SKIN.png": "/static/media/SKIN.998eb2a0e6491573fff4.png",
+    "static/media/Logo.png": "/static/media/Logo.7e5c8ffd56294afc1574.png",
+    "static/media/Anit.png": "/static/media/Anit.76e2ef45d8813c7336a8.png",
+    "static/media/Ayushi.png": "/static/media/Ayushi.76e2ef45d8813c7336a8.png",
+    "static/media/Hari.png": "/static/media/Hari.76e2ef45d8813c7336a8.png",
+    "static/media/Jasmeet.png": "/static/media/Jasmeet.76e2ef45d8813c7336a8.png",
+    "static/media/Rakesh.png": "/static/media/Rakesh.76e2ef45d8813c7336a8.png",
+    "static/media/Sumeet.png": "/static/media/Sumeet.76e2ef45d8813c7336a8.png",
+    "static/media/doctor.png": "/static/media/doctor.76e2ef45d8813c7336a8.png",
+    "static/media/bg.jpg": "/static/media/bg.a7ce6f5dbdc6e7e88b00.jpg",
+    "index.html": "/index.html",
+    "main.d284403a.css.map": "/static/css/main.d284403a.css.map",
+    "main.9f49cbc7.js.map": "/static/js/main.9f49cbc7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d284403a.css",
+    "static/js/main.9f49cbc7.js"
+  ]
+}

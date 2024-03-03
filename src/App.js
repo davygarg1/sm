@@ -3,30 +3,30 @@ import Navbar from "./components/Navbar";
 import API from './Context/API/api_state'
 import DATA from './Context/DATA/data_state'
 import { createBrowserRouter , Outlet } from "react-router-dom";
-import About from './components/About'
 import Blogs from './components/Blogs'
-import Treatment from './components/Treatment'
+import Testimonials from './components/Testimonials'
 import Contact from './components/Contact'
 import Dashboard from './components/Dashboard'
 import Footer from './components/Footer'
 import Login from './components/Login'
 import Register from './components/Register'
 import Error from './components/Error'
-import { useLocation } from "react-router-dom";
+import Status from './components/Status'
+import Scroll from './components/Scroll'
 import '../node_modules/flowbite/dist/flowbite';
 
 
 function App() {
-  let location = useLocation();
   return (
     <>
     <API>
       <DATA>
         <Navbar></Navbar>
-        <div className="mt-[72px] md:mt-[68px] overflow-x-hidden">
-        {location.pathname === '/' ? <Dashboard/> : <Outlet />}
-        <Footer></Footer>
+        <Scroll />
+        <div className="mt-[72px] md:mt-[68px] min-h-[90vh] overflow-x-hidden">
+          <Outlet />
         </div>
+        <Footer></Footer>
       </DATA>
     </API>
     </>
@@ -41,20 +41,24 @@ const router = createBrowserRouter([
     errorElement: <Error/>,
     children:[
       {
-        path: "About",
-        element: <About />,
+        path: "",
+        element: <Dashboard />,
       },
       {
         path: "Blogs",
         element: <Blogs />,
       },
       {
-        path: "Treatment",
-        element: <Treatment />,
+        path: "Testimonials",
+        element: <Testimonials />,
       },
       {
         path: "Contact",
         element: <Contact />,
+      },
+      {
+        path: "Status",
+        element: <Status />,
       },
     ]
   },

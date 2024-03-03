@@ -3,17 +3,19 @@ const mongoose = require("mongoose");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const Consultation = require("../Models/Consultations");
-const Service = require("../Models/Service");
-const Staff = require("../Models/Staff");
+const Treatments = require("../Models/Treatments");
+const Doctor = require("../Models/Doctor");
+const Testimonials = require("../Models/Testimonials");
 const mail = require('../Services/Mail');
 const fs = require('fs');
 const path_book = '../Backend/Services/Mail_Tamplates/Consultation_book.html';
+const limiter = require('../Middleware/limiter')
 
 router.post("/Book",
 	body("name", "name min 3 length").isLength({ min: 3 }),
 	body("phone", "Invaild Phone number").isLength({ min: 10, max: 10 }).isNumeric().isMobilePhone(),
-	body("age", "Invaild age").isNumeric(),
-	body("email", "Enter a vaild email").isEmail(),
+	body("email", "Enter a vaild email").optional().isEmail(),
+	limiter ,
 	async (req, res) => {
 		try {
 
@@ -26,10 +28,11 @@ router.post("/Book",
 
 			//  collect data form server 
 
-			const { name, phone, age, service, email, userid } = req.body;
-			const booking_data = { name, phone, age };
+			const { name, phone, DOB, service, email, userid , massage } = req.body;
+			const booking_data = { name, phone, DOB };
 			if (email) { booking_data.email = email }
 			if (userid) { booking_data.user = userid }
+			if (massage) { booking_data.massage = massage }
 			let Doctor = false;
 
 			// checking user allready exist or not
@@ -41,9 +44,9 @@ router.post("/Book",
 
 			// checking service is active now or not
 
-			const service_check = await Service.findOne({ _id: service });
-			if (service_check && service_check.status == false) {
-				Doctor = await Staff.findOne({ _id: service_check.user });
+			const Treatments_check = await Treatments.findOne({ _id: service });
+			if (Treatments_check && Treatments_check.status == false) {
+				Doctor = await Doctor.findOne({ _id: Treatments_check.user });
 				booking_data.service = service;
 			}
 
@@ -129,9 +132,10 @@ router.post("/Book",
 						<li><strong>Name:</strong> ${booking_details.name}</li>
 						<li><strong>Phone:</strong> ${booking_details.phone}</li>
 						<li><strong>Email:</strong> ${booking_details.email}</li>
-						<li><strong>Age:</strong> ${booking_details.age}</li>
-						<li><strong>Service:</strong> ${booking_details.service = "65da46c4340b35d4ec336cfa" ? "Not define" : service_check.name}</li>
+						<li><strong>DOB:</strong> ${booking_details.DOB}</li>
+						<li><strong>Treatment:</strong> ${Treatments_check ? Treatments_check.name : "Not define"}</li>
 						<li><strong>Doctor:</strong> ${Doctor ? Doctor.name : "Not define"}</li>
+						<li><strong>Massage:</strong> ${booking_details?.massage}</li>
 						<li><strong>Status:</strong> ${booking_details.status}</li>
 						<li><strong>Created At:</strong> ${booking_details.createdAt}</li>
 						<li><strong>Updated At:</strong> ${booking_details.updatedAt}</li>
@@ -186,9 +190,9 @@ router.post("/Update",
 
 			let Data = await Consultation.findOneAndUpdate({ phone: phone }, { $set: slot_data }, { new: true });
 			let Doctor = false;
-			const service_check = await Service.findOne({ _id: Data.service });
-			if (service_check && service_check.status == false) {
-				Doctor = await Staff.findOne({ _id: service_check.user });
+			const Treatments_check = await Service.findOne({ _id: Data.service });
+			if (Treatments_check && Treatments_check.status == false) {
+				Doctor = await Doctor.findOne({ _id: Treatments_check.user });
 			}
 
 
@@ -269,16 +273,47 @@ router.post("/Update",
 		}
 	});
 
-router.get("/status/:phone",
+router.get("/status/:phone", limiter ,
 	async (req, res) => {
 		try {
 
 			let Data = await Consultation.find({ phone: req.params.phone });
 			if (Data.length > 0) {
-				res.json({ "error": false, Data })
+				res.json({ "error": "false", Data })
 			} else {
-				res.json({ "error": true, "msg":"Record not found" });
+				res.json({ "error": "true", "msg":"Record not found" });
 			}
+
+		} catch (error) {
+			return res.status(500).json({ "error": error.message, "msg": "Intarnal server error" });
+		}
+	});
+
+
+router.post("/Testimonial",
+body("name", "name min 3 length").isLength({ min: 3 }),
+body("star", "Invaild Rating").isLength({ min: 1, max: 1 }).isNumeric(),
+limiter ,
+	async (req, res) => {
+		try {
+
+				// checking user input fileds
+
+				const errors = validationResult(req);
+				if (!errors.isEmpty()) {
+					return res.status(403).json({ ValidationErrors: errors.array(), "error": "True", "msg": "Syntax error" });
+				}
+	
+				//  collect data form server 
+	
+				const { name, star , massage , userid } = req.body;
+				const Testimonial_data = { name, star };
+				if (userid) { Testimonial_data.user = userid }
+				if (massage) { Testimonial_data.massage = massage }
+
+			let Data = await Testimonials.create(Testimonial_data);
+
+				res.json({ "error": "false", Data })
 
 		} catch (error) {
 			return res.status(500).json({ "error": error.message, "msg": "Intarnal server error" });

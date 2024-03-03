@@ -1,11 +1,16 @@
 import React, { useState, useContext } from 'react'
-import { Button, Modal, Form, Input, InputNumber } from 'antd';
+import { Button, Modal, Form, Input, InputNumber, DatePicker } from 'antd';
 import DATA from '../Context/DATA/data_context'
+import { RightOutlined } from '@ant-design/icons'
+
 
 function Modal_Screen(props) {
 
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
+    const { visible, closeModal, selectedService , Footer } = props;
+    const title = `BOOK AN APPOINTMENT ${selectedService? `FOR ${selectedService.name.toUpperCase()} PROBLEM` : ""}`;
+
     const showModal = () => {
         setOpen(true);
     };
@@ -17,6 +22,7 @@ function Modal_Screen(props) {
         }, 1000);
     };
     const handleCancel = () => {
+        Footer ? setOpen(false) : closeModal();
         setOpen(false);
     };
 
@@ -36,11 +42,11 @@ function Modal_Screen(props) {
     const validateMessages = {
         required: '${label} is required!',
         types: {
-            email: '${label} is not a valid email!',
-            number: '${label} is not a valid number!',
+            email: 'Please enter valid Email!',
+            number: 'Please enter valid number!',
         },
         number: {
-            range: '${label} must be between ${min} and ${max}',
+            min: 'Please enter vaild ${label}!',
         },
     };
     /* eslint-enable no-template-curly-in-string */
@@ -49,39 +55,49 @@ function Modal_Screen(props) {
         if (props.service) {
             values.service = props.service;
         }
+        values.service = selectedService ?._id ;
         ConsultationFn(values, "success");
     };
     const onBookingFinishFailed = (values) => {
+        values.service = selectedService ?._id ;
         ConsultationFn(values, "error")
     };
 
     return (
         <>
-            <Button type="primary" onClick={showModal} className='bg-sky-800 h-10 text-slate-50 w-36'>
-                Book Consultation
+            <Button type="primary" onClick={showModal} className='bg-sky-800 text-slate-50 w-36 h-10 flex items-center'>
+                <span>Talk to doctor</span>
+                <RightOutlined />
             </Button>
-            <Modal title="BOOK AN APPOINTMENT" open={open} onOk={handleOk} confirmLoading={confirmLoading} onCancel={handleCancel} footer={null} >
+            <Modal title={title} open={open ? open : visible} onOk={handleOk} confirmLoading={confirmLoading} onCancel={handleCancel} footer={null} >
                 <Form {...layout} name="nest-messages" onFinish={onBookingFinish} onFinishFailed={onBookingFinishFailed} style={{ maxWidth: 600 }}
                     validateMessages={validateMessages}>
+
                     <Form.Item name={['user', 'name']} label="Name" rules={[{ required: true, },]}>
-                        <Input />
+                        <Input placeholder="Enter Your Name" type='string' />
                     </Form.Item>
+
                     <Form.Item name={['user', 'email']} label="Email" rules={[{ type: 'email', },]}>
-                        <Input />
+                        <Input placeholder="Enter Your Email" type='string' />
                     </Form.Item>
-                    <Form.Item name={['user', 'phone']} label="Phone" rules={[{ type: 'number', required: true, },]}>
-                        <InputNumber />
+
+                    <Form.Item name={['user', 'phone']} label="Phone" rules={[{ type: 'number', min: 1000000000, required: true, },]}>
+                        <InputNumber placeholder="Enter Your Phone" style={{ width: '100%' }} maxLength={10} />
                     </Form.Item>
-                    <Form.Item name={['user', 'age']} label="Age" rules={[{ type: 'number', min: 0, max: 99, required: true, },]}>
-                        <InputNumber />
+
+                    <Form.Item name={['user', 'dob']} label="DOB" rules={[{ type: 'date', required: true, },]}>
+                        <DatePicker placeholder="Selet Your DOB" style={{ width: '100%' }} />
                     </Form.Item>
-                    <Form.Item name={['user', 'introduction']} label="Introduction">
+
+                    <Form.Item name={['user', 'massage']} label="Massage">
                         <Input.TextArea />
                     </Form.Item>
+
                     <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8, }}>
                         <Button key="back" onClick={handleCancel} classNames='bg-sky-800 text-slate-50 w-24'> Return </Button>
                         <Button type="primary" htmlType="submit" onClick={handleOk} className='bg-sky-800 ml-6 text-slate-50 w-24'> Submit </Button>
                     </Form.Item>
+
                 </Form>
             </Modal>
         </>

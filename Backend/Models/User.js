@@ -17,8 +17,8 @@ const UserSchema = new Schema({
         type: String,
         unique: true
       },
-      age:{
-         type: Number,
+      DOB:{
+         type: Date,
          trim: true
       },
       password:{

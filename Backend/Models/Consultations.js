@@ -21,19 +21,22 @@ const MeetSchema = new Schema({
         type: String,
         trim: true
       },
-      age:{
-         type: Number,
+      DOB:{
+         type: Date,
          require: true,
-         trim: true
       },
       service:{
          type: mongoose.Schema.Types.ObjectId,
          ref:'services',
-         default: "65dc1d2a8a37c222fb9ce53c"
       }, 
       slot:{
          type: Date,
          default: Date.now()
+      }, 
+      massage:{
+         type: String,
+         default : "Not Fill",
+         trim:true
       }, 
       status:{
          type: String,

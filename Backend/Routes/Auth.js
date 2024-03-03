@@ -4,8 +4,9 @@ const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const fetchuser = require('../middleware/fetchtoken');
 const bcrypt = require("bcrypt");
+require('dotenv').config();
 var jwt = require("jsonwebtoken");
-const JWT_SECRET = 'Dr@sumeet';
+const JWT_SECRET = process.env.JWT_SECRET;
 const User = require("../Models/User");
 const mail = require('../Services/Mail');
 const fs = require('fs');
@@ -17,8 +18,7 @@ router.post(
 	"/Register",
 	body("name", "name min 3 length").isLength({ min: 3 }),
 	body("phone", "Invaild Phone number").isLength({ min: 10, max: 10 }).isNumeric().isMobilePhone(),
-	body("age", "Invaild age").isNumeric(),
-	body("email", "Enter a vaild email").isEmail(),
+	body("email", "Enter a vaild email").optional().isEmail(),
 	body("password", "password should be atleast 5 length").isLength({ min: 5 }),
 	async (req, res) => {
 		try {
@@ -32,14 +32,14 @@ router.post(
 
 			//  checking not req fileds
 
-			const { name, phone, email, age } = req.body;
+			const { name, phone, email, DOB } = req.body;
 			const NewUser = { name, phone };
 			if (email) { NewUser.email = email.toLowerCase() };
-			if (age) { NewUser.age = age };
+			if (DOB) { NewUser.DOB = DOB };
 
 			// checking user allready exist or not
 
-			const finduserexist = await User.findOne({ email: req.body.phone });
+			const finduserexist = await User.findOne({ phone: req.body.phone });
 			if (finduserexist) {
 				return res.status(409).json({ "error": "Ture", "msg": "sorry user with this email already exist" });
 			}

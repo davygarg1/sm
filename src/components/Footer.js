@@ -1,40 +1,136 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Logo from "../Assets/Images/Logo.png";
+import ModalScreen from "./modal_book";
+import ModalStatus from "./modal_status";
+import { InstagramOutlined, FacebookOutlined, LinkedinOutlined, TwitterOutlined, YoutubeOutlined, WhatsAppOutlined } from '@ant-design/icons';
 
 function Footer() {
+	const navigation = [
+		{ name: "Dashboard", to: "/" },
+		{ name: "Testimonials", to: "/Testimonials" },
+		{ name: "Blogs", to: "/Blogs" },
+		{ name: "Contact", to: "/Contact" },
+	];
 
-    const navigation = [
-        { name: 'About', to: '/About' },
-        { name: 'Blogs', to: '/Blogs' },
-        { name: 'Treatment', to: '/Treatment' },
-        { name: 'Contact', to: '/Contact' },
-      ]
-      
+	return (
+		<>
+			<footer className="bg-gray-800 dark:bg-gray-900">
+				<div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+					<div className="md:flex md:justify-between text-gray-500">
+						<div className="mb-6 md:mb-0 ">
+							<Link to="https://Samarpitam.com/" className="flex items-center">
+								<img src={Logo} className="h-8 me-3" alt="Samarpitam Logo" />
+								<span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
+									Samarpitam
+								</span>
+							</Link>
+							<br />
+							<svg fill="#ffffff" version="1.1" id="Capa_1" className="w-8 h-8" viewBox="0 0 400 400">
+								<g>
+									<path d="M197.849,0C122.131,0,60.531,61.609,60.531,137.329c0,72.887,124.591,243.177,129.896,250.388l4.951,6.738
+                    c0.579,0.792,1.501,1.255,2.471,1.255c0.985,0,1.901-0.463,2.486-1.255l4.948-6.738c5.308-7.211,129.896-177.501,129.896-250.388
+                    C335.179,61.609,273.569,0,197.849,0z M197.849,88.138c27.13,0,49.191,22.062,49.191,49.191c0,27.115-22.062,49.191-49.191,49.191
+                    c-27.114,0-49.191-22.076-49.191-49.191C148.658,110.2,170.734,88.138,197.849,88.138z" />
+								</g>
+							</svg>
+							<br />
+							<section className="hover:text-white">
+								<p className="text-2xl font-bold"> Reach Us</p>
+								<p>562-L, Opposite Suman</p>
+								<p>Hospital, Model Town,</p>
+								<p>Ludhiana,</p>
+								<p>Punjab 141002</p>
+							</section>
+						</div>
 
 
-  return (
-    <>
-      <footer className="fixed bottom-0 left-0 z-20 w-full p-4 bg-white border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
-        <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-          © 2023{" "}
-          <Link to="https://flowbite.com/" className="hover:underline">
-          Samarpitam™
-          </Link>
-          . All Rights Reserved.
-        </span>
-        <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
 
-        {navigation.map((item) => (
-                        <li key={item.name}>
-                         <Link key={item.name} to={item.to} className="hover:underline me-4 md:me-6">
-                        {item.name}
-                      </Link>
-                      </li>
-                ))}
-        </ul>
-      </footer>
-    </>
-  );
+						<div>
+							<h2 className="mb-6 text-sm font-semibold text-white uppercase">
+								Contect Us
+							</h2>
+							<ul className="text-gray-500 font-extralight md:font-medium md:tex-sm">
+								<li className="mb-4">
+									<Link to="#" className="hover:text-blue-500">
+										9815209389
+									</Link>
+								</li>
+								<li>
+									<Link to="#" className="hover:text-blue-500">
+										Support@Samarpitam.com
+									</Link>
+								</li>
+								<li className="my-4">
+									<ModalScreen Footer={true} />
+								</li>
+								<li className="my-4">
+									<ModalStatus />
+								</li>
+							</ul>
+						</div>
+
+
+						<div className="hidden md:block">
+							<h2 className="mb-6 text-sm font-semibold text-white uppercase">
+							  Explore More
+							</h2>
+							<ul className="text-gray-500 font-extralight md:font-medium md:tex-sm">
+								{navigation.map((menu, index) => (
+									<li className="mb-2 md:mb-4" key={index}>
+										<Link to={menu.to} className="hover:text-white">
+											{menu.name}
+										</Link>
+									</li>
+								))}
+							</ul>
+						</div>
+
+
+					</div>
+					<hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+					<div className="sm:flex sm:items-center sm:justify-between">
+						<span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+							© 2024{" "}
+							<Link to="https://Samarpitam.com/" className="hover:underline">
+								Samarpitam™
+							</Link>
+							. All Rights Reserved.
+						</span>
+						<div className="flex mt-4 sm:justify-center sm:mt-0">
+							<Link to="/" className="text-gray-500 hover:text-white dark:hover:text-white">
+								<FacebookOutlined />
+								<span className="sr-only">Facebook page</span>
+							</Link>
+							<Link to="/" className="text-gray-500 hover:text-white dark:hover:text-white ms-5">
+								<InstagramOutlined />
+
+								<span className="sr-only">Instagram page</span>
+							</Link>
+							<Link to="/" className="text-gray-500 hover:text-white dark:hover:text-white ms-5">
+								<TwitterOutlined />
+								<span className="sr-only">X page</span>
+							</Link>
+							<Link to="/" className="text-gray-500 hover:text-white dark:hover:text-white ms-5">
+								<LinkedinOutlined />
+								<span className="sr-only">Linkedin account</span>
+							</Link>
+							<Link to="/" className="text-gray-500 hover:text-white dark:hover:text-white ms-5">
+								<YoutubeOutlined />
+
+								<span className="sr-only">Youtube account</span>
+							</Link>
+							<Link to={"https://wa.me/9815209389"} className="text-gray-500 hover:text-white dark:hover:text-white ms-5">
+								<WhatsAppOutlined />
+
+								<span className="sr-only">Whatsapp account</span>
+							</Link>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</>
+	);
 }
 
 export default Footer;

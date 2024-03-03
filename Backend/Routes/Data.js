@@ -1,33 +1,59 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
-const Service = require("../Models/Service");
-const Staff_model = require("../Models/Staff");
+const Treatment = require("../Models/Treatments");
+const Doctors = require("../Models/Doctor");
+const Blog = require("../Models/Blog");
+const Testimonials = require("../Models/Testimonials");
+
+router.get("/Doctor", async (req, res) => {
+	try {
+
+		const Doctor = await Doctors.find({ status: true });
+		res.json({ "error": "false", Doctor });
+
+	} catch (error) {
+		return res.status(500).json({ "error": error.message, "msg": "Intarnal server error" });
+	}
+}
+);
+
+router.get("/Testimonials", async (req, res) => {
+	try {
+
+		const Testimonial = await Testimonials.find({ status: true });
+		res.json({ "error": "false", Testimonial });
+
+	} catch (error) {
+		return res.status(500).json({ "error": error.message, "msg": "Intarnal server error" });
+	}
+}
+);
 
 
-router.get("/staff", async (req, res) => {
-      try {
+router.get("/Blog", async (req, res) => {
+	try {
 
-        const Staff = await Staff_model.find({ status:true });
-        res.json({ "error" : "false" , Staff });
+		const Blogs = await Blog.find({ status: true });
+		res.json({ "error": "false", Blogs });
 
-      } catch (error) {
-        return res.status(500).json({"error":error.message,"msg":"Intarnal server error"});
-      }
-    }
-  );
+	} catch (error) {
+		return res.status(500).json({ "error": error.message, "msg": "Intarnal server error" });
+	}
+}
+);
 
 
-router.get("/services", async (req, res) => {
-      try {
-        const Services = await Service.find({ status:true });
-        res.json({ "error" : "false" , Services });
+router.get("/Treatments", async (req, res) => {
+	try {
+		const Treatments = await Treatment.find({ status: true });
+		res.json({ "error": "false", Treatments });
 
-      } catch (error) {
-        return res.status(500).json({"error":error.message,"msg":"Intarnal server error"});
-      }
-    }
-  );
+	} catch (error) {
+		return res.status(500).json({ "error": error.message, "msg": "Intarnal server error" });
+	}
+}
+);
 
-  
+
 module.exports = router;

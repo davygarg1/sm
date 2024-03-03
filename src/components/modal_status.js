@@ -40,7 +40,7 @@ function Modal_Screen() {
             number: '${label} is not a valid number!',
         },
         number: {
-            range: '${label} must be between ${min} and ${max}',
+            min: 'Please enter vaild ${label}!',
         },
     };
     /* eslint-enable no-template-curly-in-string */
@@ -60,8 +60,8 @@ function Modal_Screen() {
             <Modal title="CHECK STATUS APPOINTMENT" open={open} onOk={handleOk} confirmLoading={confirmLoading} onCancel={handleCancel} footer={null} >
                 <Form {...layout} name="nest-messages" onFinish={onBookingFinish} onFinishFailed={onBookingFinishFailed} style={{ maxWidth: 600 }}
                     validateMessages={validateMessages}>
-                    <Form.Item name={['user', 'phone']} label="Phone" rules={[{ type: 'number', required: true, },]}>
-                        <InputNumber />
+                     <Form.Item name={['user', 'phone']} label="Phone" rules={[{ type: 'number' , min:1000000000 , required: true, },]}>
+                        <InputNumber style={{ width: '100%' }} maxLength={10} />
                     </Form.Item>
                     <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8, }}>
                         <Button key="back" onClick={handleCancel} classNames='bg-sky-800 text-slate-50 w-24'> Return </Button>

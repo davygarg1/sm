@@ -9,7 +9,7 @@ function API(props) {
 	let navigate = useNavigate();
 	const [api, contextHolder] = notification.useNotification();
 	const AlertData = [api, contextHolder];
-	const host = "http://localhost:5000";
+	const host = process.env.REACT_APP_API_URL;
 	const [UserData, setUserData] = useState({});
 
 	//  openNotificationWithIcon take four types success info warning error
@@ -28,10 +28,21 @@ function API(props) {
 
 				//  checking not req fileds
 
-				const { Name , Phone , Email , Age , Password } = values;
-				const NewUser = {"name":Name , "phone":Phone , "password":Password};
+				const { Name , Phone , Email , DOB , Password } = values;
+				const NewUser = {"name":Name , "phone":Phone , "password":Password };
+
+				const date = new Date(DOB);
+                const options = { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                };
+                const localizedDateString = date.toLocaleDateString(undefined, options);
+                NewUser.DOB = localizedDateString;
 				if(Email){NewUser.email = Email.toLowerCase() };
-				if(Age){NewUser.age = Age };
+				if(DOB){NewUser.DOB = DOB };
+				console.log(NewUser);
 
 				const customConfig = {
 					headers: {
