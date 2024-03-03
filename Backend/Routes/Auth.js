@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
-const fetchuser = require('../middleware/fetchtoken');
+const fetchuser = require('../Middleware/fetchtoken');
 const bcrypt = require("bcrypt");
 require('dotenv').config();
 var jwt = require("jsonwebtoken");

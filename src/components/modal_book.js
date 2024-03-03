@@ -66,7 +66,7 @@ function Modal_Screen(props) {
     return (
         <>
             <Button type="primary" onClick={showModal} className='bg-sky-800 text-slate-50 w-36 h-10 flex items-center'>
-                <span>Talk to doctor</span>
+                <span>Talk to Doctor</span>
                 <RightOutlined />
             </Button>
             <Modal title={title} open={open ? open : visible} onOk={handleOk} confirmLoading={confirmLoading} onCancel={handleCancel} footer={null} >
@@ -81,7 +81,7 @@ function Modal_Screen(props) {
                         <Input placeholder="Enter Your Email" type='string' />
                     </Form.Item>
 
-                    <Form.Item name={['user', 'phone']} label="Phone" rules={[{ type: 'number', min: 1000000000, required: true, },]}>
+                    <Form.Item name={['user', 'phone']} label="Moblie" rules={[{ type: 'number', min: 1000000000, required: true, },]}>
                         <InputNumber placeholder="Enter Your Phone" style={{ width: '100%' }} maxLength={10} />
                     </Form.Item>
 
@@ -89,8 +89,8 @@ function Modal_Screen(props) {
                         <DatePicker placeholder="Selet Your DOB" style={{ width: '100%' }} />
                     </Form.Item>
 
-                    <Form.Item name={['user', 'massage']} label="Massage">
-                        <Input.TextArea />
+                    <Form.Item name={['user', 'massage']} label="Message">
+                        <Input.TextArea placeholder='Enter your Message'/>
                     </Form.Item>
 
                     <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8, }}>

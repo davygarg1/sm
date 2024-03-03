@@ -49,7 +49,7 @@ function Dashboard() {
 
                 <div className='flex flex-col items-center justify-center'>
                     <p className="md:text-5xl text-3xl text-center tracking-tight font-bold">Steps to Get Your Doctor Consultation</p>
-                    <p className="md:w-4/6 w-5/6 md:text-2xl text-lg my-4 mb-8 text-center">Know too Individual are like.Samarpitam we examine patients and diseases with the aim to diagnose root causes, offer personalized treatment, and provide individualized care</p>
+                    <p className="md:w-4/6 w-5/6 md:text-2xl text-lg my-4 mb-8 text-center">No two Individual are alike.Samarpitam examine patients and diseases with the aim to diagnose root causes, offer personalized treatment, and provide individualized care.</p>
                 </div>
 
                 <div className='w-full h-4/6 flex flex-col md:flex-row justify-center items-center text-center'>
@@ -57,7 +57,7 @@ function Dashboard() {
                         <div className='w-4/6 h-full flex flex-col items-center'>
                             <span className='p-6 bg-gray-700 rounded-lg'><WhatsAppOutlined className='scale-150 text-white' /></span>
                             <p className='pt-4 text-3xl font-bold'>Connect</p>
-                            <p className='p-4 text-sm font-normal'>Call Message or Chat</p>
+                            <p className='p-4 text-sm font-normal'>Call, Message or Chat</p>
                             {/* <p className='text-sm font-semibold p-2 text-blue-500 border border-solid border-white rounded-md hover:text-white cursor-pointer'>Support@samarpitam.com</p> */}
                         </div>
                     </div>

@@ -11,7 +11,7 @@ function Founder() {
 
             <p className='w-5/6 md:w-4/6 mt-4 md:mb-12 flex items-center justify-center'>
                     <hr className='w-1/6 border-2 border-black mr-12 hidden md:block' />
-                    <p className="text-5xl tracking-tight font-bold">Our Founder</p>
+                    <p className="sm:text-5xl text-3xl tracking-tight font-bold">Our Founder</p>
                     <hr className='w-1/6 border-2 border-black ml-12 hidden md:block' />
             </p>
                 <div className='w-5/6 flex flex-col items-center justify-center'>
@@ -23,11 +23,9 @@ function Founder() {
                     <div className='w-full h-auto md:px-12 px-4 flex justify-center items-center text-white'>
 
                         <div className="flex flex-col items-center justify-center">
-                            <div className="w-32 h-32 rounded-full bg-slate-400 overflow-hidden flex justify-center items-center">
-                                <img src={doctor} alt="" className="w-3/4 h-auto" />
-                            </div>
-                            <p className='md:text-2xl text-sm font-bold mt-4'>A DREAM PROJECT of Mrs. Krishna Devi</p>
-                            <p className='text-lg font-semibold mb-4 text-center'>Discover the future of healthcare at your fingertips.</p>
+                            <div className="w-32 h-32 rounded-full overflow-hidden flex justify-center items-center bg-cover bg-no-repeat bg-white bg-center" style={{ "background-image": `url(${doctor})` }}></div>
+                            <p className='md:text-2xl text-xl font-bold mt-4 text-center'>A DREAM PROJECT of Mrs. Krishna Devi</p>
+                            <p className='md:text-lg font-semibold mb-4 text-center'>Discover the future of healthcare at your fingertips.</p>
                             <p className='md:mt-8 mt-4 md:leading-10 text-justify'>
                                 Dr. Aayushi Khandelwal, the visionary founder of our healthcare initiative, embodies a profound commitment to revolutionizing healthcare accessibility through technology. With unwavering dedication, Dr. Khandelwal pioneers a paradigm shift in healthcare provision, leveraging internet-based teleconsultation to transcend geographical barriers and deliver quality medical assistance at the fingertips of patients.
 

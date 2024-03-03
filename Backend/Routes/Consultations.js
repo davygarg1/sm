@@ -273,7 +273,7 @@ router.post("/Update",
 		}
 	});
 
-router.get("/status/:phone", limiter ,
+router.get("/status/:phone",
 	async (req, res) => {
 		try {
 

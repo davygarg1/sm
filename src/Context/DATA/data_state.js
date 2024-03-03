@@ -11,7 +11,7 @@ function DATA(props) {
     const [Treatments, setTreatments] = useState({});
     const [Testimonials, setTestimonials] = useState({});
     const [Blog, setBlog] = useState({});
-    const host = process.env.REACT_APP_API_URL;
+    const host = 'https://api.samarpitam.com';
     const Contextdata = useContext(API);
     const { openNotificationWithIcon } = Contextdata;
 

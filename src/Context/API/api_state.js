@@ -9,7 +9,7 @@ function API(props) {
 	let navigate = useNavigate();
 	const [api, contextHolder] = notification.useNotification();
 	const AlertData = [api, contextHolder];
-	const host = process.env.REACT_APP_API_URL;
+	const host = 'https://api.samarpitam.com';
 	const [UserData, setUserData] = useState({});
 
 	//  openNotificationWithIcon take four types success info warning error

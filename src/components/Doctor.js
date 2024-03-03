@@ -43,7 +43,7 @@ function Doctor() {
     let star = [<StarFilled />, <StarFilled />, <StarFilled />, <StarFilled />, <StarFilled />, <StarOutlined />, <StarOutlined />, <StarOutlined />, <StarOutlined />, <StarOutlined />]
 
     function StarRating(countfloat) {
-        let count = Math.floor(countfloat);
+        let count = Math.round(countfloat);
       const filledStars = star.slice(0, count);
       const outlinedStars = star.slice(5, 10 - count);
       return filledStars.concat(outlinedStars);
@@ -55,12 +55,12 @@ function Doctor() {
 
                 <p className='w-5/6 mt-4 md:mb-12 flex items-center justify-center'>
                     <hr className='w-1/6 border-2 border-black mr-12 hidden md:block' />
-                    <p className="text-5xl tracking-tight font-bold">Our Experts</p>
+                    <p className="sm:text-5xl text-3xl tracking-tight font-bold">Our Experts</p>
                     <hr className='w-1/6 border-2 border-black ml-12 hidden md:block' />
                 </p>
 
                 <div className='w-5/6 flex flex-col items-center justify-center'>
-                <p className="md:text-2xl text-lg mt-4 mb-8 text-center">Meet Our Expert Medical Team: Dedicated Physicians at Your Service.</p>
+                <p className="md:text-2xl text-lg mt-4 mb-8 text-center">Meet Our Expert Medical Team Dedicated Physicians at Your Service.</p>
                 </div>
 
                 <div className='md:w-5/6 w-[95vw] overflow-hidden rounded-2xl bg-gray-700 border-8 border-solid border-blue-500 shadow-xl'>
@@ -72,12 +72,12 @@ function Doctor() {
                                 <div className='w-full h-auto p-4 text-center flex flex-col md:flex-row justify-center items-center text-white'>
                                     <div className="md:w-[20rem] md:h-[20rem] h-[7rem] w-[7rem] rounded-full overflow-hidden bg-cover bg-no-repeat bg-white bg-center" style={{ "background-image": `url(${Photo(Doctor.url)})` }}></div>
                                     <div className="md:w-4/6 h-full md:p-12 flex flex-col items-center justify-center">
-                                        <p className='text-3xl font-bold my-4 text-blue-500'>Dr. {Doctor.name}</p>
+                                        <p className='text-3xl font-bold my-4 text-blue-500'>Dr. {Doctor.name.toUpperCase()}</p>
                                         <p className='text-lg font-semibold mb-8'>{Doctor.study}</p>
                                         <p className='text-justify'>{Doctor.description}</p>
                                         <div className='w-full flex justify-between items-center mt-8'>
-                                            <p className="text-sm font-semibold mb-8">{Doctor.experience} years of Experience</p>
-                                            <p className="text-sm font-semibold mb-8">{StarRating(Doctor.star.$numberDecimal).map((starComponent,index) => <span key={index}>{starComponent}</span>)}{Doctor.star.$numberDecimal}</p>
+                                            <p className="text-sm font-semibold mb-8">{Doctor.experience}+ years of Experience</p>
+                                            <p className="text-sm font-semibold mb-8">{StarRating(Doctor.star.$numberDecimal).map((starComponent,index) => <span key={index}>{starComponent}</span>)}  {Doctor.star.$numberDecimal}</p>
                                         </div>
                                     </div>
                                 </div>

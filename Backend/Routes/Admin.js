@@ -7,6 +7,7 @@ const Treatments = require("../Models/Treatments");
 const Doctor = require("../Models/Doctor");
 const Blog = require("../Models/Blog");
 var jwt = require("jsonwebtoken");
+require('dotenv').config();
 const JWT_SECRET = process.env.JWT_SECRET;
 
 
@@ -99,7 +100,7 @@ body("status", "status is req").isBoolean(),
     
                 // checking user allready exist or not
     
-                const finduserexist = await Doctor.findOne({ phone: req.body.phone });
+                const finduserexist = await Doctor.findOne({ email: req.body.email });
                 if (finduserexist) {
                     return res.status(409).json({ "error": "Ture", "msg": "sorry user with this email already exist" });
                 }

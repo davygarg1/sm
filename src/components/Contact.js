@@ -77,7 +77,7 @@ function Contact() {
 				<div className="relative py-8 lg:py-16 px-4 mx-auto max-w-screen-md flex flex-col justify-center items-center">
 					<h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Feedback Us</h2>
 					<p className="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.</p>
-					<div className='bg-white w-4/6 md:p-12 p-8  rounded-lg flex flex-col justify-center items-center'>
+					<div className='bg-white w-5/6 md:w-4/6 md:p-12 p-8  rounded-lg flex flex-col justify-center items-center'>
 						<p className='text-xl font-bold mb-4'>Rate Us</p>
 						<span className='my-4 mb-8'> {StarRating(StarCount).map((starComponent, index) => <span key={index} className='cursor-pointer mx-2 md:mx-4' onClick={()=>{setStarCount(index+1)}}>{starComponent}</span>)}</span>
 					<Form name="feedback"  labelCol={{ flex: '110px' }} labelAlign="left" onFinish={onFeedBackFinish} onFinishFailed={onFeedBackFinishFailed} labelWrap wrapperCol={{ flex: 1 }} colon={false}
@@ -87,8 +87,8 @@ function Contact() {
 							<Input type='string' placeholder='Enter your name' />
 						</Form.Item>
 
-						<Form.Item label="Massage" name="massage" rules={[{ required: true , message: "Please enter your experience!" , }]}>
-							<Input.TextArea  placeholder='Enter your Massage'/>
+						<Form.Item label="Message" name="massage" rules={[{ required: true , message: "Please enter your experience!" , }]}>
+							<Input.TextArea  placeholder='Enter your Message'/>
 						</Form.Item>
 
 						<Form.Item label="">

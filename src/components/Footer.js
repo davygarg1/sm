@@ -13,6 +13,13 @@ function Footer() {
 		{ name: "Contact", to: "/Contact" },
 	];
 
+	const phoneNumber = '9815209389';
+
+	const handleClick = () => {
+        navigator.clipboard.writeText(phoneNumber);
+        window.location.href = `tel:${phoneNumber}`;
+    };
+
 	return (
 		<>
 			<footer className="bg-gray-800 dark:bg-gray-900">
@@ -20,13 +27,13 @@ function Footer() {
 					<div className="md:flex md:justify-between text-gray-500">
 						<div className="mb-6 md:mb-0 ">
 							<Link to="https://Samarpitam.com/" className="flex items-center">
-								<img src={Logo} className="h-8 me-3" alt="Samarpitam Logo" />
+								<img src={Logo} className="h-8 me-3 rounded-full bg-white" alt="Samarpitam Logo" />
 								<span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
 									Samarpitam
 								</span>
 							</Link>
 							<br />
-							<svg fill="#ffffff" version="1.1" id="Capa_1" className="w-8 h-8" viewBox="0 0 400 400">
+							<svg fill="#FF0000" version="1.1" id="Capa_1" className="w-8 h-8" viewBox="0 0 400 400">
 								<g>
 									<path d="M197.849,0C122.131,0,60.531,61.609,60.531,137.329c0,72.887,124.591,243.177,129.896,250.388l4.951,6.738
                     c0.579,0.792,1.501,1.255,2.471,1.255c0.985,0,1.901-0.463,2.486-1.255l4.948-6.738c5.308-7.211,129.896-177.501,129.896-250.388
@@ -36,7 +43,7 @@ function Footer() {
 							</svg>
 							<br />
 							<section className="hover:text-white">
-								<p className="text-2xl font-bold"> Reach Us</p>
+								<p className="text-2xl font-bold text-white"> Reach Us</p>
 								<p>562-L, Opposite Suman</p>
 								<p>Hospital, Model Town,</p>
 								<p>Ludhiana,</p>
@@ -48,11 +55,11 @@ function Footer() {
 
 						<div>
 							<h2 className="mb-6 text-sm font-semibold text-white uppercase">
-								Contect Us
+								Contact Us
 							</h2>
 							<ul className="text-gray-500 font-extralight md:font-medium md:tex-sm">
-								<li className="mb-4">
-									<Link to="#" className="hover:text-blue-500">
+								<li className="mb-4" onClick={()=>handleClick()}>
+									<Link to="tel:9815209389" className="hover:text-blue-500">
 										9815209389
 									</Link>
 								</li>
@@ -98,11 +105,11 @@ function Footer() {
 							. All Rights Reserved.
 						</span>
 						<div className="flex mt-4 sm:justify-center sm:mt-0">
-							<Link to="/" className="text-gray-500 hover:text-white dark:hover:text-white">
+							<Link to="https://www.facebook.com/Samarpitam.Chikitsalaya?sfnsn=wiwspmo&mibextid=RUbZ1f" className="text-gray-500 hover:text-white dark:hover:text-white">
 								<FacebookOutlined />
 								<span className="sr-only">Facebook page</span>
 							</Link>
-							<Link to="/" className="text-gray-500 hover:text-white dark:hover:text-white ms-5">
+							<Link to="https://www.instagram.com/samarpitam.chikitsalaya?igsh=MXNpMnU5aWU0bTNwaQ==" className="text-gray-500 hover:text-white dark:hover:text-white ms-5">
 								<InstagramOutlined />
 
 								<span className="sr-only">Instagram page</span>
