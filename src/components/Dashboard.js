@@ -1,6 +1,6 @@
 import React , { useState } from 'react'
 import ModalScreen from './modal_book'
-import Logo from '../Assets/Images/Logo.png'
+import Logo from '../Assets/Images/Home.png'
 import Treatments from './Treatments'
 import Doctor from './Doctor';
 import Founder from './Founder';
@@ -101,30 +101,6 @@ function Dashboard() {
                             <div className="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-12 lg:px-6">
                                 <figure className="max-w-screen-md mx-auto">
 
-
-                                    <svg className="h-12 mx-auto mb-3 scale-150"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24"
-                                        width="24"
-                                        height="24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    >
-
-                                        <circle cx="12" cy="12" r="10" />
-                                        <circle cx="12" cy="12" r="6" />
-                                        <circle cx="12" cy="12" r="2" />
-
-
-                                        <line x1="12" y1="4" x2="12" y2="8" />
-                                        <line x1="12" y1="20" x2="12" y2="16" />
-                                        <polyline points="16 12 12 16 8 12" />
-                                    </svg>
-
-
                                     <blockquote>
                                         <p className="text-2xl font-medium text-gray-900 dark:text-white text-justify mx-4">Ayurveda is not about to treatment, It is about how to live .So, our mission to provide best information about lifestyle to how to prevent disease & keep healthy. We hold sacred the physician patient relationship that based on trust, dignity and mutual respect.</p>
                                     </blockquote>
@@ -143,24 +119,6 @@ function Dashboard() {
                 <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
                     <div className="mx-auto max-w-screen-sm">
                         <h2 className="mb-8 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">OUR PERSPECTIVE</h2>
-                        <div>
-                            <svg className='h-12 mx-auto mb-8 scale-150'
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                width="24"
-                                height="24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            >
-                                <circle cx="12" cy="12" r="10" />
-                                <line x1="8" y1="12" x2="16" y2="12" />
-                                <line x1="12" y1="8" x2="12" y2="16" />
-                            </svg>
-
-                        </div>
                         <p className='mb-4 font-normal text-gray-500 lg:mb-8 sm:text-xl dark:text-gray-400'>"हम समर्पित हैं साझेदारी में, मरीजों की जरूरतों पर ध्यान केंद्रित करते हैं। स्वास्थ्य को बेहतर बनाने के साथ-साथ, हम सेहत सेवा के अच्छे अनुभव को भी प्राथमिकता देते हैं।"</p>
                         <p className="font-normal text-gray-500 sm:text-xl dark:text-gray-400">We believe in team work and focusing on patient’s needs. We treat every patient as we would want ourselves or our family members to be treated. We provide not just better health outcome but for better healthcare experience.</p>
                     </div>

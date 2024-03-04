@@ -11,7 +11,7 @@ import Logo3 from '../Assets/Images/Login/3.png'
 import Logo4 from '../Assets/Images/Login/4.png'
 import Logo5 from '../Assets/Images/Login/5.png'
 import Logo6 from '../Assets/Images/Login/6.png'
-import bg from '../Assets/Images/Login/bg.jpg'
+import bg from '../Assets/Images/Login/bg.png'
 
 function Register(props) {
 
@@ -87,8 +87,8 @@ function Register(props) {
                                     <Input placeholder="Enter Your Name" type='string' maxLength={15} />
                                 </Form.Item>
 
-                                <Form.Item label="Email" name="Email" tooltip="Email is a optional" rules={[{ type:'email' , message: 'Please enter your Email!', },]}>
-                                    <Input placeholder="Enter Your Email" type='string' />
+                                <Form.Item label="E-mail" name="Email" tooltip="Email is a optional" rules={[{ type:'email' , message: 'Please enter your E-mail!', },]}>
+                                    <Input placeholder="Enter Your E-mail" type='string' />
                                 </Form.Item>
 
                                 <Form.Item label="Phone" name="Phone" required tooltip="phone is a required " rules={[{ type: 'number', min:1000000000 , required: true, message: 'Please enter your Phone!', },]}>

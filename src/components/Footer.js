@@ -64,7 +64,7 @@ function Footer() {
 									</Link>
 								</li>
 								<li>
-									<Link to="#" className="hover:text-blue-500">
+									<Link to="mailto:Support@Samarpitam.com" className="hover:text-blue-500">
 										Support@Samarpitam.com
 									</Link>
 								</li>

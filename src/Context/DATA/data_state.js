@@ -182,7 +182,7 @@ function DATA(props) {
                 const json = await respose.data;
                 console.log(json)
 
-                if (json.error === false) {
+                if (json.error === "false") {
                     openNotificationWithIcon(
                         bool,
                         "Testimonial",
@@ -199,7 +199,7 @@ function DATA(props) {
                 );
             }
         } catch (error) {
-            openNotificationWithIcon("error", "Testimonial", error.response.data.msg ? error.response.data.msg : "Server Error", "bottomLeft");
+            openNotificationWithIcon("error", "Testimonial", error.response.data.msg ? error.response.data.msg : error.response.data ? error.response.data : "Server Error", "bottomLeft");
         }
     }
 

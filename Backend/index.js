@@ -5,7 +5,6 @@ var cors = require('cors')
 const app = express()
 const auth = require('./Routes/Auth')
 const Data = require('./Routes/Data')
-const limiter = require('./Middleware/limiter')
 const consultation = require('./Routes/Consultations')
 const Admin = require('./Routes/Admin')
 require('dotenv').config();
@@ -22,7 +21,7 @@ app.use('/api/admin',Admin);
 app.use('/api/Data',Data);
 app.use('/api/consultation',consultation);
 
-app.get('/' , limiter , (req, res) => {
+app.get('/' , (req, res) => {
   res.send('Hello welcome!')
 })
 

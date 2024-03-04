@@ -11,7 +11,7 @@ import Logo3 from '../Assets/Images/Login/3.png'
 import Logo4 from '../Assets/Images/Login/4.png'
 import Logo5 from '../Assets/Images/Login/5.png'
 import Logo6 from '../Assets/Images/Login/6.png'
-import bg from '../Assets/Images/Login/bg.jpg'
+import bg from '../Assets/Images/Login/bg.png'
 
 
 function Login(props) {

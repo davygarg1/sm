@@ -13,7 +13,6 @@ import Register from './components/Register'
 import Error from './components/Error'
 import Status from './components/Status'
 import Scroll from './components/Scroll'
-// import '../node_modules/flowbite/dist/flowbite';
 
 
 function App() {

@@ -32,7 +32,7 @@ function Testimonials() {
 				<div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
 					<div className="mx-auto max-w-screen-sm">
 						<h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Testimonials</h2>
-						<p className="mb-8 font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">Explore the whole collection of open-source web components and elements built with the utility classes from Tailwind</p>
+						<p className="mb-8 font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">Delve into the sweetness of SAMARPITAM's offerings and share your delectable experiences.</p>
 					</div>
 
 					<Carousel autoplay>
@@ -56,7 +56,7 @@ function Testimonials() {
 													<photo className="w-6 h-6 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png" alt="profile picture" ></photo>
 													<div className="flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700">
 														<div className="pr-3 font-medium text-gray-900 dark:text-white">{Testimonials.name}</div>
-														<div className="pl-3 text-sm font-light text-gray-500 dark:text-gray-400">{StarRating(Testimonials.star).map((starComponent, index) => <span key={index}>{starComponent}</span>)}</div>
+														<div className="pl-3 text-sm font-light text-gray-500 dark:text-gray-400">{StarRating(Testimonials.star).map((starComponent, index) => <span key={index}>{starComponent}</span>)}  {Testimonials.star}.0</div>
 													</div>
 												</figcaption>
 											</figure>

@@ -42,7 +42,7 @@ function Modal_Screen(props) {
     const validateMessages = {
         required: '${label} is required!',
         types: {
-            email: 'Please enter valid Email!',
+            email: 'Please enter valid E-mail!',
             number: 'Please enter valid number!',
         },
         number: {
@@ -77,11 +77,11 @@ function Modal_Screen(props) {
                         <Input placeholder="Enter Your Name" type='string' />
                     </Form.Item>
 
-                    <Form.Item name={['user', 'email']} label="Email" rules={[{ type: 'email', },]}>
-                        <Input placeholder="Enter Your Email" type='string' />
+                    <Form.Item name={['user', 'email']} label="E-mail" rules={[{ type: 'email', },]}>
+                        <Input placeholder="Enter Your E-mail" type='string' />
                     </Form.Item>
 
-                    <Form.Item name={['user', 'phone']} label="Moblie" rules={[{ type: 'number', min: 1000000000, required: true, },]}>
+                    <Form.Item name={['user', 'phone']} label="Phone" rules={[{ type: 'number', min: 1000000000, required: true, },]}>
                         <InputNumber placeholder="Enter Your Phone" style={{ width: '100%' }} maxLength={10} />
                     </Form.Item>
 
