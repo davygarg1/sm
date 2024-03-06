@@ -135,7 +135,7 @@ router.post("/Book",
 						<li><strong>DOB:</strong> ${booking_details.DOB}</li>
 						<li><strong>Treatment:</strong> ${Treatments_check ? Treatments_check.name : "Not define"}</li>
 						<li><strong>Doctor:</strong> ${Doctor ? Doctor.name : "Not define"}</li>
-						<li><strong>Massage:</strong> ${booking_details?.massage}</li>
+						<li><strong>Message:</strong> ${booking_details?.massage}</li>
 						<li><strong>Status:</strong> ${booking_details.status}</li>
 						<li><strong>Created At:</strong> ${booking_details.createdAt}</li>
 						<li><strong>Updated At:</strong> ${booking_details.updatedAt}</li>

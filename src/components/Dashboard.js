@@ -1,32 +1,71 @@
-import React , { useState } from 'react'
+import React, { useState } from 'react'
 import ModalScreen from './modal_book'
 import Logo from '../Assets/Images/Home.png'
 import Treatments from './Treatments'
 import Doctor from './Doctor';
 import Founder from './Founder';
 import Testimonials from './Testimonials'
-import { SolutionOutlined , WhatsAppOutlined ,TeamOutlined , ScheduleOutlined } from '@ant-design/icons'
+import { Carousel } from 'antd';
+import { SolutionOutlined, WhatsAppOutlined, TeamOutlined, ScheduleOutlined } from '@ant-design/icons'
+
+import logo from '../Assets/logo.jpg'
+import SL from '../Assets/SL.jpg'
+import SL2 from '../Assets/SL2.jpg'
 
 function Dashboard() {
 
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedService, setSelectedService] = useState(null);
-  
+
     const openModal = (service) => {
-      setSelectedService(service);
-      setModalVisible(true);
+        setSelectedService(service);
+        setModalVisible(true);
     };
-  
+
     const closeModal = () => {
-      setModalVisible(false);
-      setSelectedService(null);
+        setModalVisible(false);
+        setSelectedService(null);
     };
 
     return (
         <>
 
+            <section className='mb-12 hidden md:block'>
+                <Carousel autoplay>
+                {/* <div className="w-full h-[400px]">
+                    <div className="w-screen h-full flex justify-center overflow-hidden" >
 
-            <div className="w-screen h-[40vh] flex justify-center bg-cover" style={{ backgroundImage: "url('https://www.istockphoto.com/videos/water-wave-white-background')" }}>
+                        <div className="w-4/6 md:3/6 h-full flex flex-col justify-center items-center bg-transparent">
+                            <p>
+                                <p className='text-lg md:text-2xl font-bold md:font-extrabold '>Consult Specialist Doctors Online</p>
+                                <p className='text-sm md:text-xl mb-4 font-semibold  md:font-bold'>Expert Guidance, Always Online</p>
+                                <p className='text-xs md:text-sm mb-8 font-normal md:font-semibold'>Your Wellness, Our Priority - Virtual Care, Real Results</p>
+                            </p>
+                            <ModalScreen visible={modalVisible} closeModal={closeModal} Footer={false} selectedService={selectedService} />
+                        </div>
+
+                        <div className='w-3/6 h-full flex justify-center items-center'>
+                            <img src={Logo} className='h-1/2 w-4/6' alt="" />
+                        </div>
+
+                    </div>
+                    </div> */}
+                    <div className="w-full h-[400px]">
+                        <div className="w-full h-full flex justify-center items-center">
+                            <img src={SL} className="object-fill w-5/6 h-5/6 rounded-3xl" alt="" />
+                        </div>
+                    </div>
+                    <div className="w-full h-[400px]">
+                        <div className="w-full h-full flex justify-center items-center">
+                            <img src={SL2} className="object-fill w-5/6 h-5/6 rounded-3xl" alt="" />
+                        </div>
+                    </div>
+                 
+                </Carousel>
+            </section>
+
+
+            <div className="w-screen h-[30vh] flex md:hidden justify-center bg-cover" style={{ backgroundImage: "url('https://www.istockphoto.com/videos/water-wave-white-background')" }}>
 
                 <div className="w-4/6 md:3/6 ml-4 h-full flex flex-col justify-center items-center bg-transparent">
                     <p>
@@ -38,12 +77,12 @@ function Dashboard() {
                 </div>
 
                 <div className='w-3/6 h-full flex justify-center items-center'>
-                    <img src={Logo} className='h-1/2 w-4/6' alt="" />
+                    <img src={logo} className='h-[85%] w-[90%]' alt="" />
                 </div>
 
             </div>
 
-            <Treatments  openModal={openModal}/>
+            <Treatments openModal={openModal} />
 
             <section className='w-screen bg-blue-200 mt-8 py-8 overflow-hidden border-2 border-solid border-black'>
 
@@ -63,7 +102,7 @@ function Dashboard() {
                     </div>
                     <div className="w-full h-2/6 md:h-full md:w-2/6 flex items-center justify-center">
                         <div className='w-4/6 h-full flex flex-col items-center'>
-                            <span className='p-6 bg-gray-700 rounded-lg'><SolutionOutlined  className='scale-150 text-white' /></span>
+                            <span className='p-6 bg-gray-700 rounded-lg'><SolutionOutlined className='scale-150 text-white' /></span>
                             <p className='pt-4 text-2xl font-bold'>Health Coach</p>
                             <p className='p-4 text-sm font-normal'>Health Coach will be Assigned to you.</p>
                             {/* <p className='text-sm font-semibold p-2 text-blue-500 border border-solid border-white rounded-md hover:text-white cursor-pointer'>9815209389</p> */}

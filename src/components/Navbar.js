@@ -25,9 +25,11 @@ export default function Navbar(props) {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const toggleMenu = () => {
+    setIsProfileOpen(false);
     setIsOpen(!isOpen);
   };
   const toggleProfile = () => {
+    setIsOpen(false);
     setIsProfileOpen(!isProfileOpen);
   };
 
@@ -58,7 +60,7 @@ export default function Navbar(props) {
                   {/* <image className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo"></image> */}
                 </button>
 
-                <div className={`z-50 ${ isProfileOpen ? 'flex' : 'hidden' } my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600`} id="user-dropdown">
+                <div className={`z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 right-0 top-12 absolute m-0 ${ isProfileOpen ? 'block' : 'hidden' }`} id="user-dropdown">
                   <div className="px-4 py-3 hover:bg-blue-700 hover:text-white cursor-pointer">
                     <span className="block text-lg">{localStorage.getItem("user") ? localStorage.getItem("user").toUpperCase() : "Hello"}</span>
                     <span className="block text-sm">welcome</span>
@@ -92,7 +94,7 @@ export default function Navbar(props) {
 
               {navigation.map((item) => (
                 <li key={item.name}>
-                  <Link key={item.name} to={item.to}
+                  <Link key={item.name} to={item.to} onClick={toggleMenu}
                     className={classNames(
                       item.current ? 'text-white bg-blue-700 rounded md:bg-transparent md:text-blue-500 md:p-0 md:dark:text-blue-500' : 'text-black md:text-white hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-500 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700',
                       'block py-2 px-3 '
