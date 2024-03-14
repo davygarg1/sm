@@ -18,7 +18,7 @@ function Services({openModal}) {
     return (
         <>
         <div className='w-screen h-auto p-4 flex items-center justify-center'>
-        <div className='h-auto md:w-5/6 mx-4 rounded-2xl md:p-12 p-6' style={{ "boxShadow": "0px 0px 15px 2px #A19F9E" }}>
+        <div className='h-auto md:w-5/6 mx-4 bg-white rounded-2xl md:p-12 p-6' style={{ "boxShadow": "0px 0px 15px 2px #A19F9E" }}>
              <Row gutter={[36, 36]} justify="space-around" align="middle">
                 <ListServices  Data={Treatments} openModal={openModal}></ListServices>
             </Row>

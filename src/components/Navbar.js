@@ -18,7 +18,8 @@ export default function Navbar(props) {
     { name: 'Dashboard', to: '/', current: location.pathname === '/' ? true : false },
     { name: 'Blogs', to: '/Blogs', current: location.pathname === '/Blogs' ? true : false },
     { name: 'Testimonials', to: '/Testimonials', current: location.pathname === '/Testimonials' ? true : false },
-    { name: 'Contact', to: '/Contact', current: location.pathname === '/Contact' ? true : false },
+    { name: 'Contact Us', to: '/Contact', current: location.pathname === '/Contact' ? true : false },
+    { name: 'Our Team', to: '/Doctor', current: location.pathname === '/Doctor' ? true : false },
   ]
 
   const [isOpen, setIsOpen] = useState(false);

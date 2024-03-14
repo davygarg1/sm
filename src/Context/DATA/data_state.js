@@ -10,6 +10,7 @@ function DATA(props) {
     const [Doctor, setDoctor] = useState({});
     const [Treatments, setTreatments] = useState({});
     const [Testimonials, setTestimonials] = useState({});
+    const [Blog_data, setBlog_data] = useState({});
     const [Blog, setBlog] = useState({});
     const host = 'https://api.samarpitam.com';
     const Contextdata = useContext(API);
@@ -32,6 +33,43 @@ function DATA(props) {
         } catch (error) {
             navigate("/");
             openNotificationWithIcon("error", "Doctor", error.response.data.msg ? error.response.data.msg : "Server Error", "bottomLeft");
+        }
+    }
+
+    async function get_Blog_Data(values, bool) {
+
+        try {
+
+            if (bool === "success") {
+            const  _id = values._id;
+
+            const customConfig = {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            };
+
+            const respose = await axios.get(
+                `${host}/api/Data/Blog_data/${_id}`,
+                customConfig
+            );
+
+            const json = await respose.data;
+            setBlog_data(json);
+
+            } else {
+                navigate("/");
+                openNotificationWithIcon(
+                    "error",
+                    "BLOG",
+                    "BLOG NOT FOUND",
+                    "bottomLeft"
+                );
+            }
+
+        } catch (error) {
+            navigate("/");
+            openNotificationWithIcon("error", "BLOG", error.response.data.msg ? error.response.data.msg : "Server Error", "bottomLeft");
         }
     }
 
@@ -180,7 +218,6 @@ function DATA(props) {
                 );
 
                 const json = await respose.data;
-                console.log(json)
 
                 if (json.error === "false") {
                     openNotificationWithIcon(
@@ -235,7 +272,7 @@ function DATA(props) {
 
     return (
         <Data.Provider
-            value={{ get_Doctor, Doctor, Treatments, get_Treatments, ConsultationFn , StatusFn , get_Testimonials , Testimonials , TestimonialsFn , get_blog , Blog }}>
+            value={{ get_Doctor, Doctor, Treatments, get_Treatments, ConsultationFn , StatusFn , get_Testimonials , Testimonials , TestimonialsFn , get_blog , Blog , get_Blog_Data , Blog_data }}>
             {props.children}
         </Data.Provider>
     )

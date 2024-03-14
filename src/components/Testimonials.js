@@ -27,7 +27,7 @@ function Testimonials() {
 	return (
 		<>
 
-			<section className="bg-white">
+			<section className="bg-transparent">
 
 				<div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
 					<div className="mx-auto max-w-screen-sm">

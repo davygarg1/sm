@@ -19,7 +19,7 @@ function Blogs() {
 
 	let navigate = useNavigate();
 	const Contextdata = useContext(DATA);
-	const { Blog, get_blog } = Contextdata;
+	const { Blog, get_blog, get_Blog_Data } = Contextdata;
 
 	useEffect(() => {
 		get_blog();
@@ -55,17 +55,22 @@ function Blogs() {
 		}
 	}
 
+	function Bloggo( value ) {
+		DATA.Blog = value;
+		get_Blog_Data(value , 'success');
+		navigate('/Blog_info');
+	}
+
 	return (
 		<>
 			<section className='w-screen flex flex-col justify-center items-center py-12'>
 				<div className="mx-auto max-w-screen-sm text-center">
 					<h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">BLOG</h2>
-					<p className="mb-8 font-light text-gray-500 lg:mb-16 sm:text-xl dark:text-gray-400">Unlocking Knowledge: Dive into Our Blog for Engaging Insights and Inspirational Stories.</p>
+					<p className="mb-8 font-light text-black lg:mb-16 sm:text-xl dark:text-gray-400">Unlocking Knowledge: Dive into Our Blog for Engaging Insights and Inspirational Stories.</p>
 				</div>
 				<div className='w-5/6 h-auto flex justify-center items-center p-12 bg-gray-800 rounded-xl'>
 					<Row gutter={[36, 36]} justify="space-around" align="middle">
 						{(Blog.error === "false" && Blog.Blogs.map((Blog) =>
-
 							<Col key={Blog.id}>
 								<Card hoverable style={{ width: 240, height: 500 }}
 									cover={<img alt="example" className='h-64 overflow-hidden' src={Photo(Blog.url)} />}>
@@ -74,12 +79,14 @@ function Blogs() {
 											<p className='text-lg font-medium text-center'>{Blog.name.toUpperCase()}</p>
 											<p className='text-sm font-normal text-center mb-2'>{Blog.description}</p>
 										</div>
-										<Button type='primary' className='bg-sky-800 text-slate-50 h-10 flex items-center'>Read More</Button>
+										<Button type='primary' onClick={()=>Bloggo(Blog)} className='bg-sky-800 text-slate-50 h-10 flex items-center '>Read More</Button>
 										<div className='w-full flex justify-between items-center mt-4'><p>Publish Date</p><p>{DOP(Blog.createdAt)}</p></div>
 									</div>
 								</Card>
 							</Col>
+
 						)) ||
+
 							(
 								<div className="container my-5">
 									<h2>Blogs</h2>

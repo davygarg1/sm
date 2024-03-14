@@ -10,7 +10,8 @@ function Footer() {
 		{ name: "Dashboard", to: "/" },
 		{ name: "Testimonials", to: "/Testimonials" },
 		{ name: "Blogs", to: "/Blogs" },
-		{ name: "Contact", to: "/Contact" },
+		{ name: "Contact Us", to: "/Contact" },
+		{ name: "Our Team", to: "/Doctor" },
 	];
 
 	const phoneNumber = '9815209389';
@@ -44,10 +45,10 @@ function Footer() {
 							<br />
 							<section className="hover:text-white">
 								<p className="text-2xl font-bold text-white"> Reach Us</p>
-								<p>562-L, Opposite Suman</p>
-								<p>Hospital, Model Town,</p>
-								<p>Ludhiana,</p>
-								<p>Punjab 141002</p>
+								<p>Bhoot Nath Mandir Road</p>
+								<p>Near A.S Garden Dinanagar,</p>
+								<p>Gurdaspur,</p>
+								<p>Punjab 143531</p>
 							</section>
 						</div>
 
@@ -118,11 +119,11 @@ function Footer() {
 								<TwitterOutlined />
 								<span className="sr-only">X page</span>
 							</Link>
-							<Link to="/" className="text-gray-500 hover:text-white dark:hover:text-white ms-5">
+							<Link to="https://in.linkedin.com/in/samarpitam-chikitsalaya-b575732b9" className="text-gray-500 hover:text-white dark:hover:text-white ms-5">
 								<LinkedinOutlined />
 								<span className="sr-only">Linkedin account</span>
 							</Link>
-							<Link to="/" className="text-gray-500 hover:text-white dark:hover:text-white ms-5">
+							<Link to="https://youtube.com/@Samarpitam.Chikitsalaya?si=aUL73FhwBv3anKw0" className="text-gray-500 hover:text-white dark:hover:text-white ms-5">
 								<YoutubeOutlined />
 
 								<span className="sr-only">Youtube account</span>

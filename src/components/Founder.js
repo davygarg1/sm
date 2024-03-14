@@ -8,7 +8,7 @@ function Founder() {
                 <p className="w-5/6 md:w-4/6 mt-4 md:mb-12 flex items-center justify-center">
                     <hr className="w-1/6 border-2 border-black mr-12 hidden md:block" />
                     <p className="sm:text-5xl text-3xl tracking-tight font-bold">
-                        Our Founder
+                        OUR FOUNDER
                     </p>
                     <hr className="w-1/6 border-2 border-black ml-12 hidden md:block" />
                 </p>

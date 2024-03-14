@@ -1,7 +1,7 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect , useState } from 'react'
 import DATA from '../Context/DATA/data_context'
 import { useNavigate } from "react-router-dom";
-import { Carousel } from 'antd';
+import { Carousel , Button } from 'antd';
 import { StarFilled, StarOutlined } from '@ant-design/icons';
 import doctor from '../Assets/Images/Doctor/doctor.png'
 import Anit from '../Assets/Images/Doctor/Anit.png'
@@ -16,6 +16,7 @@ function Doctor() {
     let navigate = useNavigate();
     const Contextdata = useContext(DATA);
     const { get_Doctor, Doctor } = Contextdata;
+    const [Text, setText] = useState(false);
 
     useEffect(() => {
         get_Doctor();
@@ -55,7 +56,7 @@ function Doctor() {
 
                 <p className='w-5/6 mt-4 md:mb-12 flex items-center justify-center'>
                     <hr className='w-1/6 border-2 border-black mr-12 hidden md:block' />
-                    <p className="sm:text-5xl text-3xl tracking-tight font-bold">Our Experts</p>
+                    <p className="sm:text-5xl text-3xl tracking-tight font-bold">OUR EXPERTS</p>
                     <hr className='w-1/6 border-2 border-black ml-12 hidden md:block' />
                 </p>
 
@@ -73,8 +74,9 @@ function Doctor() {
                                     <div className="md:w-[20rem] md:h-[20rem] h-[7rem] w-[7rem] rounded-full overflow-hidden bg-cover bg-no-repeat bg-white bg-center" style={{ "background-image": `url(${Photo(Doctor.url)})` }}></div>
                                     <div className="md:w-4/6 h-full md:p-12 flex flex-col items-center justify-center">
                                         <p className='text-3xl font-bold my-4 text-blue-500'>Dr. {Doctor.name.toUpperCase()}</p>
-                                        <p className='text-lg font-semibold mb-8'>{Doctor.study}</p>
-                                        <p className='text-justify'>{Doctor.description}</p>
+                                        <p className='text-lg font-semibold mb-8'>{Doctor.study.toUpperCase()}</p>
+                                        <p className='text-justify'>{ Text ? Doctor.description : Doctor.description.split(' ').slice(0, 25).join(' ')}</p>
+                                        <Button type='primary' onClick={()=>setText(!Text)} className={`bg-sky-800 text-slate-50 h-10 my-4 flex items-center`}>{Text ? "Read Less" : "Read More"}</Button>
                                         <div className='w-full flex justify-between items-center mt-8'>
                                             <p className="text-sm font-semibold mb-8">{Doctor.experience}+ years of Experience</p>
                                             <p className="text-sm font-semibold mb-8">{StarRating(Doctor.star.$numberDecimal).map((starComponent,index) => <span key={index}>{starComponent}</span>)}  {Doctor.star.$numberDecimal}</p>
