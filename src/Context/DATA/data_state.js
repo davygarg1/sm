@@ -12,6 +12,7 @@ function DATA(props) {
     const [Testimonials, setTestimonials] = useState({});
     const [Blog_data, setBlog_data] = useState({});
     const [Blog, setBlog] = useState({});
+    // const host = 'http://localhost:5000';
     const host = 'https://api.samarpitam.com';
     const Contextdata = useContext(API);
     const { openNotificationWithIcon } = Contextdata;
@@ -137,6 +138,8 @@ function DATA(props) {
         try {
             if (bool === "success") {
 
+                if( values.user.check){
+
                 //  checking not req fileds
 
                 const { name, phone, email, dob , massage } = values.user;
@@ -178,6 +181,15 @@ function DATA(props) {
                         bool,
                         "Consultation",
                         "Booking Initialized",
+                        "bottomLeft"
+                    );
+                }
+
+                } else {
+                    openNotificationWithIcon(
+                        "error",
+                        "Consultation",
+                        "Agree Terms and Conditions",
                         "bottomLeft"
                     );
                 }

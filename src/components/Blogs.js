@@ -13,6 +13,7 @@ import RESPIRATORY from '../Assets/Images/Blog/RESPIRATORY.png'
 import SKIN from '../Assets/Images/Blog/SKIN.png'
 import URINARY from '../Assets/Images/Blog/URINARY.png'
 import JOINTS_PAIN from '../Assets/Images/Blog/JOINTS PAIN.png'
+import CARDIAC from '../Assets/Images/Blog/CARDIAC.png'
 
 
 function Blogs() {
@@ -44,6 +45,7 @@ function Blogs() {
 		"SKIN": { src: SKIN },
 		"URINARY": { src: URINARY },
 		"JOINTS_PAIN": { src: JOINTS_PAIN },
+		"CARDIAC": { src: CARDIAC },
 	};
 
 	function Photo(index) {
@@ -72,12 +74,12 @@ function Blogs() {
 					<Row gutter={[36, 36]} justify="space-around" align="middle">
 						{(Blog.error === "false" && Blog.Blogs.map((Blog) =>
 							<Col key={Blog.id}>
-								<Card hoverable style={{ width: 240, height: 500 }}
+								<Card hoverable style={{ width: 240, height: 450 }}
 									cover={<img alt="example" className='h-64 overflow-hidden' src={Photo(Blog.url)} />}>
 									<div className="w-full flex flex-col justify-center items-center">
-										<div className='h-28'>
+										<div className='h-16'>
 											<p className='text-lg font-medium text-center'>{Blog.name.toUpperCase()}</p>
-											<p className='text-sm font-normal text-center mb-2'>{Blog.description}</p>
+											{/* <p className='text-sm font-normal text-center mb-2'>{Blog.description}</p> */}
 										</div>
 										<Button type='primary' onClick={()=>Bloggo(Blog)} className='bg-sky-800 text-slate-50 h-10 flex items-center '>Read More</Button>
 										<div className='w-full flex justify-between items-center mt-4'><p>Publish Date</p><p>{DOP(Blog.createdAt)}</p></div>

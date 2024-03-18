@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Logo from "../Assets/Images/Logo.png";
 import ModalScreen from "./modal_book";
 import ModalStatus from "./modal_status";
-import { InstagramOutlined, FacebookOutlined, LinkedinOutlined, TwitterOutlined, YoutubeOutlined, WhatsAppOutlined } from '@ant-design/icons';
+import { InstagramOutlined, FacebookOutlined, LinkedinOutlined, YoutubeOutlined, WhatsAppOutlined } from '@ant-design/icons';
 
 function Footer() {
 	const navigation = [
@@ -114,10 +114,6 @@ function Footer() {
 								<InstagramOutlined />
 
 								<span className="sr-only">Instagram page</span>
-							</Link>
-							<Link to="/" className="text-gray-500 hover:text-white dark:hover:text-white ms-5">
-								<TwitterOutlined />
-								<span className="sr-only">X page</span>
 							</Link>
 							<Link to="https://in.linkedin.com/in/samarpitam-chikitsalaya-b575732b9" className="text-gray-500 hover:text-white dark:hover:text-white ms-5">
 								<LinkedinOutlined />

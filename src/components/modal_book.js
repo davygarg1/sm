@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { Button, Modal, Form, Input, InputNumber, DatePicker } from 'antd';
+import { Button, Modal, Form, Input, InputNumber, DatePicker, Checkbox } from 'antd';
 import DATA from '../Context/DATA/data_context'
 import { RightOutlined } from '@ant-design/icons'
 
@@ -57,6 +57,7 @@ function Modal_Screen(props) {
         }
         values.service = selectedService ?._id ;
         ConsultationFn(values, "success");
+        
     };
     const onBookingFinishFailed = (values) => {
         values.service = selectedService ?._id ;
@@ -70,7 +71,7 @@ function Modal_Screen(props) {
                 <RightOutlined />
             </Button>
             <Modal title={title} open={open ? open : visible} onOk={handleOk} confirmLoading={confirmLoading} onCancel={handleCancel} footer={null} >
-                <Form {...layout} name="nest-messages" onFinish={onBookingFinish} onFinishFailed={onBookingFinishFailed} style={{ maxWidth: 600 }}
+                <Form {...layout} className='mt-8' name="nest-messages" onFinish={onBookingFinish} onFinishFailed={onBookingFinishFailed} style={{ maxWidth: 400 }}
                     validateMessages={validateMessages}>
 
                     <Form.Item name={['user', 'name']} label="Name" rules={[{ required: true, },]}>
@@ -91,6 +92,10 @@ function Modal_Screen(props) {
 
                     <Form.Item name={['user', 'massage']} label="Message">
                         <Input.TextArea placeholder='Enter your Message'/>
+                    </Form.Item>
+
+                    <Form.Item name={['user', 'check']} valuePropName="checked" rules={[{ type: Checkbox, required: true, },]}>
+                            <Checkbox style={{ width: '100%' }}>I Agree with Terms and Conditions</Checkbox>
                     </Form.Item>
 
                     <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8, }}>

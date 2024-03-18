@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import ModalScreen from './modal_book'
 import { Link } from "react-router-dom";
-import Logo from '../Assets/Images/Home.png'
 import Treatments from './Treatments'
 import Doctor from './Doctor';
 import Founder from './Founder';
 import Testimonials from './Testimonials'
 import { Carousel } from 'antd';
 import { SolutionOutlined, WhatsAppOutlined, TeamOutlined, ScheduleOutlined } from '@ant-design/icons'
-import logo from '../Assets/logo.png'
+import logo from '../Assets/Images/Home.png'
 import Slide1 from '../Assets/Images/Slides/Slide1.png'
 import Slide2 from '../Assets/Images/Slides/Slide2.png'
 import Slide3 from '../Assets/Images/Slides/Slide3.png'
@@ -31,39 +30,22 @@ function Dashboard() {
     return (
         <>
 
-            <section className='my-4 md:my-8'>
+            <section>
                 <Carousel autoplay>
-                {/* <div className="w-full h-[400px]">
-                    <div className="w-screen h-full flex justify-center overflow-hidden" >
-
-                        <div className="w-4/6 md:3/6 h-full flex flex-col justify-center items-center bg-transparent">
-                            <p>
-                                <p className='text-lg md:text-2xl font-bold md:font-extrabold '>Consult Specialist Doctors Online</p>
-                                <p className='text-sm md:text-xl mb-4 font-semibold  md:font-bold'>Expert Guidance, Always Online</p>
-                                <p className='text-xs md:text-sm mb-8 font-normal md:font-semibold'>Your Wellness, Our Priority - Virtual Care, Real Results</p>
-                            </p>
-                            <ModalScreen visible={modalVisible} closeModal={closeModal} Footer={false} selectedService={selectedService} />
-                        </div>
-
-                        <div className='w-3/6 h-full flex justify-center items-center'>
-                            <img src={Logo} className='h-1/2 w-4/6' alt="" />
-                        </div>
-
-                    </div>
-                    </div> */}
-                    <div className="w-full h-[200px] md:h-[400px]">
+                    
+                    <div className="w-full h-[250px] md:h-[400px]">
                         <div className="w-full h-full flex justify-center items-center">
-                            <img src={Slide2} className="object-fill w-5/6 h-5/6 rounded-3xl" alt="" />
+                            <img src={Slide2} className="object-fill w-5/6 h-4/6 rounded-3xl" alt="" />
                         </div>
                     </div>
-                    <div className="w-full h-[200px] md:h-[400px]">
+                    <div className="w-full h-[250px] md:h-[400px]">
                         <div className="w-full h-full flex justify-center items-center">
-                            <img src={Slide3} className="object-fill w-5/6 h-5/6 rounded-3xl" alt="" />
+                            <img src={Slide3} className="object-fill w-5/6 h-4/6 rounded-3xl" alt="" />
                         </div>
                     </div>
-                    <div className="w-full h-[200px] md:h-[400px]">
+                    <div className="w-full h-[250px] md:h-[400px]">
                         <div className="w-full h-full flex justify-center items-center">
-                            <img src={Slide1} className="object-fill w-5/6 h-5/6 rounded-3xl" alt="" />
+                            <img src={Slide1} className="object-fill w-5/6 h-4/6 rounded-3xl" alt="" />
                         </div>
                     </div>
                  
@@ -149,7 +131,7 @@ function Dashboard() {
                                 <figure className="max-w-screen-md mx-auto">
 
                                     <blockquote>
-                                        <p className="text-2xl font-medium text-gray-900 dark:text-white text-justify mx-4">Ayurveda is not about to treatment, It is about how to live .So, our mission is to provide the best information about lifestyle andto how to prevent disease & keep ourselves healthy. We hold sacred the physician patient relationship that’s based on trust, dignity and mutual respect.</p>
+                                        <p className="text-2xl font-medium text-gray-900 dark:text-white text-justify mx-4">Ayurveda is not about only treatment, It is about how to live .So, our mission is to provide the best information about lifestyle and how to prevent disease & keep ourselves healthy. We hold sacred the physician patient relationship that’s based on trust, dignity and mutual respect.</p>
                                     </blockquote>
 
                                 </figure>

@@ -65,6 +65,7 @@ function Login(props) {
 
 
                         <Carousel autoplay>
+
                             <div className="w-full h-screen">
                                 <img src={Logo1} className="object-fill w-full h-screen" alt="" />
                             </div>
@@ -83,6 +84,7 @@ function Login(props) {
                             <div className="w-full h-screen">
                                 <img src={Logo6} className="object-fill w-full h-screen" alt="" />
                             </div>
+                            
                         </Carousel>
 
                     </div>

@@ -56,7 +56,7 @@ function Blog_info() {
                                             <div className="flex justify-center">
                                                 <Button type='primary' className='bg-sky-800 text-slate-50 h-10 flex items-center'>Read More</Button>
                                             </div>
-                                            <div className='w-full px-8 flex justify-between items-center'><p>Publish Date</p><p className='mx-4'>{DOP(Data.createdAt)}</p></div>
+                                            <div className='w-full px-8 mt-4 flex justify-between items-center'><p>Publish Date</p><p className='mx-4'>{DOP(Data.createdAt)}</p></div>
                                         </div>
                                     </Link>
                                     </div>

@@ -18,7 +18,7 @@ function Founder() {
                     </p>
                 </div>
 
-                <div className="md:w-5/6 py-4 overflow-hidden rounded-lg bg-gray-700 border-8 border-solid border-blue-500 shadow-xl">
+                <div className="md:w-5/6 py-4 overflow-hidden rounded-lg bg-gray-900 shadow-xl">
                     <div className="w-full h-auto md:px-12 px-4 flex justify-center items-center text-white">
                         <div className="flex flex-col items-center justify-center">
                             <div

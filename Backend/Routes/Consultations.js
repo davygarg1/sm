@@ -137,7 +137,8 @@ router.post("/Book",
 						<li><strong>Doctor:</strong> ${Doctor ? Doctor.name : "Not define"}</li>
 						<li><strong>Message:</strong> ${booking_details?.massage}</li>
 						<li><strong>Status:</strong> ${booking_details.status}</li>
-						<li><strong>Created At:</strong> ${booking_details.createdAt}</li>
+						<li><strong>Terms and Conditions:</strong>Agree</li>
+						<li><strong>Book At:</strong> ${booking_details.createdAt}</li>
 						<li><strong>Updated At:</strong> ${booking_details.updatedAt}</li>
 					</ul>
 					<p>Please ensure that you call on time for fix appointment with user. If you need to cancel or reschedule, kindly inform us at least 24 hours in advance.</p>

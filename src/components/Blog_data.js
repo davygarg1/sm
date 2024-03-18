@@ -1,19 +1,87 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import DATA from '../Context/DATA/data_context'
 import Modal_book from './modal_book'
+import bg from '../Assets/Images/Blog_info/bg.jpg'
+import PCOS  from '../Assets/Images/Blog_info/pcod.png';
+import leucorrhea  from '../Assets/Images/Blog_info/leucorrhea.png';
+import Kidney  from '../Assets/Images/Blog_info/Kidney stones.png';
+import ULCERATIVE  from '../Assets/Images/Blog_info/Ulcerative.png';
+import Irritable  from '../Assets/Images/Blog_info/IBS.png';
+import Depression  from '../Assets/Images/Blog_info/Depression.png';
+import piles  from '../Assets/Images/Blog_info/piles.png';
+import Fatty  from '../Assets/Images/Blog_info/fatty liver.png';
+import Asthma  from '../Assets/Images/Blog_info/Asthma.png';
+import Sinusitis  from '../Assets/Images/Blog_info/Sinusitis.png';
+import Migraine  from '../Assets/Images/Blog_info/Migrain.png';
+import Thyroid  from '../Assets/Images/Blog_info/Thyroid.png';
+import Obesity  from '../Assets/Images/Blog_info/obesity.png';
+import Vitiligo  from '../Assets/Images/Blog_info/vitiligo.png';
+import Rheumatoid from '../Assets/Images/Blog_info/jointpain.png';
+import Psoriasis  from '../Assets/Images/Blog_info/psoriasis.png';
+import Urinary  from '../Assets/Images/Blog_info/urinary infection.png';
+import Acne  from '../Assets/Images/Blog_info/arthritis.png';
+import Diabetes from '../Assets/Images/Blog_info/Diabetes.png';
+import Gout from '../Assets/Images/Blog_info/gout.png';
+import Osteo from '../Assets/Images/Blog_info/osteoarthritis.png';
+
+import Neuralgia from '../Assets/Images/Blog_info/Neuralgia.jpg';
+import Sciatica from '../Assets/Images/Blog_info/Sciatica.jpg';
+import Cervical from '../Assets/Images/Blog_info/Cervical.jpg';
+import Jaundice  from '../Assets/Images/Blog_info/Jaundice.jpg';
+import Hypertension  from '../Assets/Images/Blog_info/Hypertension.jpg';
+import Infertility from '../Assets/Images/Blog_info/Infertility.jpg';
+import Eczema  from '../Assets/Images/Blog_info/Eczema.jpg';
 
 function Blog_data() {
 
     let navigate = useNavigate();
-    const Contextdata = useContext(DATA);
-    const { Blog_data } = Contextdata;
 
     useEffect(() => {
         if (!DATA.Blog_info) {
             navigate('/');
         }
     }, [navigate]);
+
+    const photos = {
+		"PCOS": { src: PCOS },
+		"leucorrhea": { src: leucorrhea },
+		"Kidney stones": { src: Kidney },
+		"ULCERATIVE COLITIS": { src: ULCERATIVE },
+		"Irritable Bowel Syndromme": { src: Irritable },
+		"Depression": { src: Depression },
+		"piles": { src: piles },
+		"Fatty liver": { src: Fatty },
+		"Jaundice": { src: Jaundice },
+		"Asthma": { src: Asthma },
+		"Sinusitis": { src: Sinusitis },
+		"Migraine": { src: Migraine },
+		"Thyroid": { src: Thyroid },
+		"Obesity": { src: Obesity },
+		"Vitiligo": { src: Vitiligo },
+		"Psoriasis": { src: Psoriasis },
+		"Hypertension": { src: Hypertension },
+		"Urinary Tract Infection": { src: Urinary },
+		"Acne": { src: Acne },
+		"Eczema": { src: Eczema },
+		"Neuralgia Pain": { src: Neuralgia },
+		"Sciatica Pain": { src: Sciatica },
+		"Diabetes": { src: Diabetes },
+		"Infertility": { src: Infertility },
+		"Gout": { src: Gout },
+		"Cervical": { src: Cervical },
+		"Rheumatoid Arthritis": { src: Rheumatoid },
+		"Osteo Arthritis": { src: Osteo },
+	};
+
+    function Photo(index) {
+        if (photos[index]) {
+            let data = photos[index];
+			return data.src;
+		} else {
+			return bg;
+		}
+	}
 
     function DOP(DOP) {
 		const utcDOB = new Date(DOP);
@@ -32,8 +100,8 @@ function Blog_data() {
                     <section className='w-screen bg-transparent overflow-hidden'>
 
                         {/* <div className='flex flex-col items-center justify-center bg-red-400 py-12'> */}
-                        <div className='flex flex-col items-center justify-center py-12 bg-no-repeat bg-cover'  style={{ "background-image": `url(https://i.pinimg.com/736x/c5/16/ff/c516ff9163fefeaa5974fc7c8855cd02.jpg)` }}>
-                            <p className="md:text-5xl text-3xl text-center tracking-tight font-bold">{DATA.Blog.name.toUpperCase()}</p>
+                        <div className='flex flex-col items-center justify-center py-12 min-h-[500px] bg-no-repeat bg-cover'  style={{ "background-image": `url(${Photo(DATA.Blog_info.name)})` ,  "backgroundPosition": 'center'  }}>
+                            <p className="md:text-5xl text-3xl text-center font-bold">{DATA.Blog.name.toUpperCase()}</p>
                             <p className="md:w-4/6 w-5/6 md:text-2xl text-lg my-4 text-center">{DATA.Blog.description}</p>
                             <p className="md:w-4/6 w-5/6 md:text-2xl text-lg mb-8 text-center">{DATA.Blog_info.name.toUpperCase()}</p>
                             <Modal_book Footer={true}/>
@@ -56,7 +124,7 @@ function Blog_data() {
                                             <ul className='mx-12 list-decimal'>
 
                                                 {Object.entries(value).map(([subKey, subValue]) => (
-                                                    <li key={subKey} className='text-justify'><span className='font-semibold'>{subKey.toUpperCase()}</span>: {subValue}</li>
+                                                    <li key={subKey} className='text-justify'><span className='font-semibold text-sky-800'>{subKey.toUpperCase()}</span>: {subValue}</li>
                                                 ))}
 
                                             </ul>

@@ -64,7 +64,7 @@ function Doctor() {
                 <p className="md:text-2xl text-lg mt-4 mb-8 text-center">Meet Our Expert Medical Team Dedicated Physicians at Your Service.</p>
                 </div>
 
-                <div className='md:w-5/6 w-[95vw] overflow-hidden rounded-2xl bg-gray-700 border-8 border-solid border-blue-500 shadow-xl'>
+                <div className='md:w-5/6 w-[95vw] overflow-hidden rounded-2xl bg-gray-900 shadow-xl'>
                     <Carousel autoplay>
 
                         {(Doctor.error === "false" && Doctor.Doctor.map((Doctor) =>
