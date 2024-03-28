@@ -64,7 +64,7 @@ function Contact() {
 					<div className="w-full h-2/6 md:h-full md:w-2/6 flex items-center justify-center">
 						<div className='w-4/6 h-full flex flex-col items-center justify-center'>
 							<span className='p-6 bg-gray-700 rounded-lg'><WhatsAppOutlined className='scale-150' /></span>
-							<p className='pt-4 text-3xl font-bold'>support</p>
+							<p className='pt-4 text-3xl font-bold'>Support</p>
 							<p className='p-4 text-sm font-normal text-justify'>Email us for general queries, including marketing and partnership opportunities.</p>
 							<Link to={"https://wa.me/9815209389"} ><p className='text-sm font-semibold p-2 text-blue-500 border border-solid border-white  rounded-md hover:text-white cursor-pointer'>Chat on Whatsapp</p></Link>
 						</div>
