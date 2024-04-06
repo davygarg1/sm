@@ -31,6 +31,10 @@ import Gout from '../Assets/Images/Blog_info/Gout.png';
 import Cervical from '../Assets/Images/Blog_info/Cervical.png';
 import Rheumatoid from '../Assets/Images/Blog_info/Rheumatoid.png';
 import Osteo from '../Assets/Images/Blog_info/Osteo.png';
+import Typhoid from '../Assets/Images/Blog_info/Typhoid.png';
+import Oligospermia from '../Assets/Images/Blog_info/Oligospermia.png';
+import Benign from '../Assets/Images/Blog_info/Benign.png';
+import Erectile from '../Assets/Images/Blog_info/Erectile.png';
 
 
 function Blog_data() {
@@ -72,6 +76,10 @@ function Blog_data() {
 		"Cervical": { src: Cervical },
 		"Rheumatoid Arthritis": { src: Rheumatoid },
 		"Osteo Arthritis": { src: Osteo },
+		"Typhoid": { src: Typhoid },
+		"Oligospermia": { src: Oligospermia },
+		"Beningn Prostate Hypertrophy": { src: Benign },
+		"Erectile dysfunction": { src: Erectile },
 	};
 
     function Photo(index) {

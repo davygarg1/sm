@@ -1,5 +1,5 @@
 import React from "react";
-import doctor from "../Assets/Images/Doctor/doctor.png";
+import doctor from "../Assets/Images/Founder.png";
 
 function Founder() {
     return (
@@ -18,17 +18,12 @@ function Founder() {
                     </p>
                 </div>
 
-                <div className="md:w-5/6 py-4 overflow-hidden rounded-lg bg-gray-900 shadow-xl">
+                <div className="md:w-5/6 py-8 overflow-hidden rounded-2xl bg-gray-900 shadow-xl">
                     <div className="w-full h-auto md:px-12 px-4 flex justify-center items-center text-white">
                         <div className="flex flex-col items-center justify-center">
-                            <div
-                                className="w-32 h-32 rounded-full overflow-hidden flex justify-center items-center bg-cover bg-no-repeat bg-white bg-center"
-                                style={{ "background-image": `url(${doctor})` }}
-                            ></div>
-                            <p className="md:text-2xl text-xl font-bold mt-4 text-center">
-                                A Dream project of Mrs. KRISHNA DEVI
-                            </p>
-                            <p className="md:mt-8 mt-4 md:leading-10 text-justify">
+                            <div  className="w-32 h-32 rounded-full overflow-hidden flex justify-center items-center bg-cover bg-no-repeat bg-white bg-center" style={{ "background-image": `url(${doctor})` }} ></div>
+                            <p className="md:text-2xl text-xl font-bold mt-4 text-center"> A Dream project of Mrs. KRISHNA DEVI </p>
+                            <p className="md:mt-8 mt-4 text-lg md:leading-10 text-justify">
                                 SAMARPITAM has been established with the vision of bringing
                                 quality health care with a team of competent and highly
                                 dedicated doctors. With a forward-thinking approach and a deep

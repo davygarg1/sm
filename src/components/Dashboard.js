@@ -11,6 +11,7 @@ import logo from '../Assets/Images/Home.png'
 import Slide1 from '../Assets/Images/Slides/Slide1.png'
 import Slide2 from '../Assets/Images/Slides/Slide2.png'
 import Slide3 from '../Assets/Images/Slides/Slide3.png'
+import Slide4 from '../Assets/Images/Slides/Slide4.png'
 
 function Dashboard() {
 
@@ -46,6 +47,11 @@ function Dashboard() {
                     <div className="w-full h-[250px] md:h-[400px]">
                         <div className="w-full h-full flex justify-center items-center">
                             <img src={Slide1} className="object-fill w-5/6 h-4/6 rounded-3xl" alt="" />
+                        </div>
+                    </div>
+                    <div className="w-full h-[250px] md:h-[400px]">
+                        <div className="w-full h-full flex justify-center items-center">
+                            <img src={Slide4} className="object-fill w-5/6 h-4/6 rounded-3xl" alt="" />
                         </div>
                     </div>
                  
@@ -119,51 +125,49 @@ function Dashboard() {
 
 
             <section className="bg-transparent">
-                <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
-                    <div className="mx-auto max-w-screen-sm">
-                        <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">OUR AIM</h2>
-                        <p className="mb-8 font-light text-gray-900 lg:mb-16 sm:text-xl dark:text-gray-400">"स्वास्थस्य स्वास्थ्य रक्षणं आतुरस्य विकार प्रशमनं च"</p>
-                    </div>
-                    <div className='w-full py-2 flex justify-center items-center text-white bg-gray-900 rounded-2xl overflow-hidden'>
 
-                        <section className="bg-transparent dark">
-                            <div className="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-12 lg:px-6">
-                                <figure className="max-w-screen-md mx-auto">
+            <div className="w-screen overflow-hidden p-4 my-12 flex flex-col items-center justify-center">
 
-                                    <blockquote>
-                                        <p className="text-2xl font-medium text-gray-900 dark:text-white text-justify mx-4">Ayurveda is not about only treatment, It is about how to live .So, our mission is to provide the best information about lifestyle and how to prevent disease & keep ourselves healthy. We hold sacred the physician patient relationship that’s based on trust, dignity and mutual respect.</p>
-                                    </blockquote>
+                <p className='w-5/6 mt-4 md:mb-12 flex items-center justify-center'>
+                    <p className="sm:text-5xl text-3xl tracking-tight font-bold">OUR AIM</p>
+                </p>
 
-                                </figure>
-                            </div>
-                        </section>
+                <div className='w-5/6 flex flex-col items-center justify-center'>
+                <p className="md:text-2xl text-lg mt-4 mb-8 text-center">"स्वास्थस्य स्वास्थ्य रक्षणं आतुरस्य विकार प्रशमनं च"</p>
+                </div>
 
-                    </div>
+                <div className='md:w-5/6 w-[95vw] overflow-hidden rounded-2xl bg-gray-900 shadow-xl'>
+
+                <div className="w-full p-8 md:h-64 flex justify-center items-center">
+                        <p className="md:w-4/6 text-2xl font-medium text-white text-justify">Ayurveda is not about only treatment, It is about how to live .So, our mission is to provide the best information about lifestyle and how to prevent disease & keep ourselves healthy. We hold sacred the physician patient relationship that’s based on trust, dignity and mutual respect.</p>
+                </div>
+
+                    
+                </div>
+
                 </div>
             </section>
 
 
             <section className="bg-transparent">
-                <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
-                    <div className="mx-auto max-w-screen-sm">
-                        <h2 className="mb-6 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">OUR PERSPECTIVE</h2>
-                        <p className="mb-8 font-light text-black lg:mb-16 sm:text-xl dark:text-gray-400">"हम समर्पित हैं साझेदारी में, मरीजों की जरूरतों पर ध्यान केंद्रित करते हैं। स्वास्थ्य को बेहतर बनाने के साथ-साथ, हम सेहत सेवा के अच्छे अनुभव को भी प्राथमिकता देते हैं।"</p>
+            <div className="w-screen overflow-hidden p-4 my-12 flex flex-col items-center justify-center">
+
+                <p className='w-5/6 mt-4 md:mb-12 flex items-center justify-center'>
+                    <p className="sm:text-5xl text-3xl tracking-tight font-bold">OUR PERSPECTIVE</p>
+                </p>
+
+                <div className='w-5/6 flex flex-col items-center justify-center'>
+                <p className="md:text-2xl text-lg mt-4 mb-8 text-center">"हम समर्पित हैं साझेदारी में, मरीजों की जरूरतों पर ध्यान केंद्रित करते हैं। स्वास्थ्य को बेहतर बनाने के साथ-साथ, हम सेहत सेवा के अच्छे अनुभव को भी प्राथमिकता देते हैं।"</p>
+                </div>
+
+                <div className='md:w-5/6 w-[95vw] overflow-hidden rounded-2xl bg-gray-900 shadow-xl'>
+
+                    <div className="w-full p-8 md:h-64 flex justify-center items-center">
+                        <p className="md:w-4/6 text-2xl font-medium text-white text-justify">We believe in team work and focusing on patient’s needs. We treat every patient in a way as we would want ourselves or our family members to be treated. We provide not just better health outcome but also a better healthcare experience.</p>
                     </div>
-                    <div className='w-full py-2 flex justify-center items-center text-white bg-gray-900 rounded-2xl overflow-hidden'>
 
-                        <section className="bg-transparent dark">
-                            <div className="max-w-screen-xl px-4 py-8 mx-auto text-center lg:py-12 lg:px-6">
-                                <figure className="max-w-screen-md mx-auto">
+                </div>
 
-                                    <blockquote>
-                                        <p className="text-2xl font-medium text-gray-900 dark:text-white text-justify mx-4">We believe in team work and focusing on patient’s needs. We treat every patient in a way as we would want ourselves or our family members to be treated. We provide not just better health outcome but also a better healthcare experience.</p>
-                                    </blockquote>
-
-                                </figure>
-                            </div>
-                        </section>
-
-                    </div>
                 </div>
             </section>
 
