@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Button, Result } from 'antd';
 import { Link } from "react-router-dom";
 import DATA from '../Context/DATA/data_context'
+import API from '../Context/API/api_context'
 import { useNavigate } from "react-router-dom";
 
 function Status() {
@@ -18,7 +19,7 @@ function Status() {
         "status": "booking intialized",
       }
 
-    const Booking_data = DATA.bookingData ? DATA.bookingData : Demo;
+    const Booking_data = DATA.bookingData || API.bookingData || Demo;
 
     useEffect(() => {
         if (Booking_data.name === "Samarpitam") {
@@ -49,13 +50,13 @@ function Status() {
                                 <p className="text-sm mt-1"><span className='text-lg'>Phone: </span>{Booking_data.phone}</p>
                                 <p className="text-sm mt-1"><span className='text-lg'>DOB: </span>{DOBDateString}</p>
                                 {/* <p className="text-sm mt-1"><span className='text-lg'>Service: </span>{Booking_data.service === "65da46c4340b35d4ec336cfa" ? "Not defined" : Booking_data.service}</p> Corrected comparison */}
-                                <p className="text-sm mt-1"><span className='text-lg'>Slot: </span>{new Date(Booking_data.slot).toLocaleString()}</p>
+                                {/* <p className="text-sm mt-1"><span className='text-lg'>Slot: </span>{new Date(Booking_data.createdAt).toLocaleString()}</p> */}
                                 <p className="text-sm mt-1"><span className='text-lg'>Status: </span>{Booking_data.status}</p>
                             </div>
                         </div>
                     </div>,
                     <Link to={'/'}><Button type="primary" key="console" className="bg-sky-800 border-4 h-10 text-slate-50 w-28 m-4"> Go Home </Button></Link>,
-                    <Link to={'/'}><Button key="buy" className="border-4 h-10 w-28 m-4">Use Again</Button></Link>,
+                    <Link to={"https://wa.me/9815209389"} > <Button type="primary" key="console" className="bg-sky-800 border-4 h-10 text-slate-50 w-36 m-4"> Chat on Whatsapp </Button></Link>,
                 ]}
             />
 

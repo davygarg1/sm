@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { notification } from "antd";
 import axios from "axios";
@@ -21,6 +21,37 @@ function API(props) {
 			placement,
 		});
 	};
+
+
+	async function StatusFn(values, bool) {
+        try {
+            if (bool === "success") {
+                const customConfig = {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                };
+
+                const respose = await axios.get(
+                    `${host}/api/consultation/status/${values.user.phone}`,
+                    customConfig
+                );
+                const json = await respose.data;
+
+                if (json.error === "false") {
+                    Api.bookingData = json.Data[0];
+                    navigate('/Status');
+                    openNotificationWithIcon( bool, "Consultation Status", "We Got Your Status", "bottomLeft" );
+                } else {
+                    openNotificationWithIcon( "error", "Consultation Status", json.msg , "bottomLeft");
+                }
+            } else {
+                openNotificationWithIcon( "error", "Consultation Status", "Validation Error", "bottomLeft");
+            }
+        } catch (error) {
+            openNotificationWithIcon("error", "Consultation Status", error.response.data ? error.response.data : "Server Error", "bottomLeft");
+        }
+    }
 
 	async function RegisterFn(values, bool) {
 		try {
@@ -113,7 +144,10 @@ function API(props) {
 					);
 					setTimeout(() => {
 						FetchUserFn();
-						navigate("/");
+						var values = { user : { phone : data.phone }}
+						StatusFn(values, "success");
+						// console.log(StatusFn)
+						// navigate("/");
 					}, 1000);
 					
 				}

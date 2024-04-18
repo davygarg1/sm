@@ -16,6 +16,7 @@ import Blog_data from './components/Blog_data'
 import Error from './components/Error'
 import Status from './components/Status'
 import Scroll from './components/Scroll'
+import TC from './components/TC'
 
 
 function App() {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
       {
         path: "Status",
         element: <Status />,
+      },
+      {
+        path: "Terms&Conditions",
+        element: <TC />,
       },
     ]
   },

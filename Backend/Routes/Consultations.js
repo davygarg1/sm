@@ -56,6 +56,15 @@ router.post("/Book",
 
 			//  if got email then send email 
 
+			// date to indian time
+
+			function date(dateString) {
+				const dateObject = new Date(dateString);
+				const IST_offset = 5.5 * 60 * 60 * 1000; // IST is UTC+5:30
+				const IST_dateObject = new Date(dateObject.getTime() + IST_offset);
+				return IST_dateObject;
+			}
+			
 			fs.readFile(path_book, 'utf8', (err, data) => {
 				if (err) {
 					console.error('Error reading HTML file:', err);
@@ -138,8 +147,8 @@ router.post("/Book",
 						<li><strong>Message:</strong> ${booking_details?.massage}</li>
 						<li><strong>Status:</strong> ${booking_details.status}</li>
 						<li><strong>Terms and Conditions:</strong>Agree</li>
-						<li><strong>Book At:</strong> ${booking_details.createdAt}</li>
-						<li><strong>Updated At:</strong> ${booking_details.updatedAt}</li>
+						<li><strong>Book At:</strong> ${date(booking_details.createdAt)}</li>
+						<li><strong>Updated At:</strong> ${date(booking_details.updatedAt)}</li>
 					</ul>
 					<p>Please ensure that you call on time for fix appointment with user. If you need to cancel or reschedule, kindly inform us at least 24 hours in advance.</p>
 					<p>For any inquiries or assistance, feel free to contact Dr. Sumeet Saini.</p>

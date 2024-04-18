@@ -78,7 +78,7 @@ function Blog_data() {
 		"Osteo Arthritis": { src: Osteo },
 		"Typhoid": { src: Typhoid },
 		"Oligospermia": { src: Oligospermia },
-		"Beningn Prostate Hypertrophy": { src: Benign },
+		"Benign Prostatic Hyperplasia": { src: Benign },
 		"Erectile dysfunction": { src: Erectile },
 	};
 

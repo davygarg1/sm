@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import { Button, Modal, Form, Input, InputNumber, DatePicker, Checkbox } from 'antd';
 import DATA from '../Context/DATA/data_context'
 import { RightOutlined } from '@ant-design/icons'
+import { Link } from 'react-router-dom';
 
 
 function Modal_Screen(props) {
@@ -95,7 +96,7 @@ function Modal_Screen(props) {
                     </Form.Item>
 
                     <Form.Item name={['user', 'check']} valuePropName="checked" rules={[{ type: Checkbox, required: true, },]}>
-                            <Checkbox style={{ width: '100%' }}>I Agree with Terms and Conditions</Checkbox>
+                            <Checkbox style={{ width: '100%' }}>I Agree with <Link to={'/Terms&Conditions'} className='text-blue-500'>Terms and Conditions</Link></Checkbox>
                     </Form.Item>
 
                     <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8, }}>

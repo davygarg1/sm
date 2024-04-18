@@ -51,7 +51,7 @@ function Blog_info() {
                                     <div className="w-screen h-auto flex justify-center items-center">
                                     <Link to={`/Blog_info/${Data.name}`} onClick={() => Blog_data_info(Data)}>
                                         <div className="md:w-[900px] w-screen py-8 my-8 bg-sky-200 flex flex-col justify-center md:rounded-lg items-center border border-black border-solid">
-                                            <p className='px-8 text-5xl font-normal leading-tight tracking-widest'>{Data.name.toUpperCase()}</p>
+                                            <p className='px-8 md:text-5xl text-4xl font-normal leading-tight tracking-widest'>{Data.name.toUpperCase()}</p>
                                             <p className='p-4'>{Data.description[Data.name]}</p>
                                             <div className="flex justify-center">
                                                 <Button type='primary' className='bg-sky-800 text-slate-50 h-10 flex items-center'>Read More</Button>

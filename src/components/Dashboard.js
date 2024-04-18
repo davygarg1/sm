@@ -36,22 +36,22 @@ function Dashboard() {
                     
                     <div className="w-full h-[250px] md:h-[400px]">
                         <div className="w-full h-full flex justify-center items-center">
-                            <img src={Slide2} className="object-fill w-5/6 h-4/6 rounded-3xl" alt="" />
+                            <img src={Slide2} className="object-fill w-5/6 md:h-5/6 h-4/6 rounded-3xl" alt="" />
                         </div>
                     </div>
                     <div className="w-full h-[250px] md:h-[400px]">
                         <div className="w-full h-full flex justify-center items-center">
-                            <img src={Slide3} className="object-fill w-5/6 h-4/6 rounded-3xl" alt="" />
+                            <img src={Slide3} className="object-fill w-5/6 md:h-5/6 h-4/6 rounded-3xl" alt="" />
                         </div>
                     </div>
                     <div className="w-full h-[250px] md:h-[400px]">
                         <div className="w-full h-full flex justify-center items-center">
-                            <img src={Slide1} className="object-fill w-5/6 h-4/6 rounded-3xl" alt="" />
+                            <img src={Slide1} className="object-fill w-5/6 md:h-5/6 h-4/6 rounded-3xl" alt="" />
                         </div>
                     </div>
                     <div className="w-full h-[250px] md:h-[400px]">
                         <div className="w-full h-full flex justify-center items-center">
-                            <img src={Slide4} className="object-fill w-5/6 h-4/6 rounded-3xl" alt="" />
+                            <img src={Slide4} className="object-fill w-5/6 md:h-5/6 h-4/6 rounded-3xl" alt="" />
                         </div>
                     </div>
                  
@@ -61,7 +61,7 @@ function Dashboard() {
 
             <div className="w-screen h-[30vh] flex justify-center">
 
-                <div className="w-4/6 md:3/6 ml-4 h-full flex flex-col justify-center items-center bg-transparent">
+                <div className="w-4/6 md:w-3/6 ml-4 h-full flex flex-col justify-center items-center bg-transparent">
                     <p>
                         <p className='text-lg md:text-2xl font-bold md:font-extrabold '>Consult Specialist Doctors Online</p>
                         <p className='text-sm md:text-xl mb-4 font-semibold  md:font-bold'>Expert Guidance, Always Online</p>
@@ -78,7 +78,7 @@ function Dashboard() {
 
             <Treatments openModal={openModal} />
 
-            <section className='w-screen bg-transparent mt-8 py-8 overflow-hidden'>
+            <section className='w-screen bg-transparent mt-8 py-8 overflow-hidden cursor-pointer' onClick={()=>openModal(null)}>
 
                 <div className='flex flex-col items-center justify-center'>
                     <p className="md:text-5xl text-3xl text-center tracking-tight font-bold">Steps to Get Your Doctor Consultation</p>
