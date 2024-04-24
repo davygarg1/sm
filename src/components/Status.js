@@ -34,6 +34,13 @@ function Status() {
     const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
     const DOBDateString = utcDOB.toLocaleDateString('en-GB', options);
 
+    function Slot(date) {
+        var slot = date;
+        console.log(date)
+        var formattedSlot = slot === "1970-01-01T00:00:00.000+00:00" ? "Not Booked" : new Date(slot).toLocaleString();
+        return formattedSlot
+    }
+
 
     return (
         <>
@@ -46,12 +53,15 @@ function Status() {
                         <div className="bg-black w-full md:w-3/6 shadow-md rounded-lg overflow-hidden mb-4 text-white">
                             <div className="px-4 py-4 text-center">
                                 <h2 className="mx-auto text-3xl my-4 font-semibold">{Booking_data.name.toUpperCase()}</h2>
-                                <p className="text-sm mt-1"><span className='text-lg'>Email: </span>{Booking_data.email ? Booking_data.email : "Email Not Found"}</p>
+                                <p className="text-sm mt-1"><span className='text-sm'>Email: </span>{Booking_data.email ? Booking_data.email.toUpperCase() : "Email Not Found"}</p>
                                 <p className="text-sm mt-1"><span className='text-lg'>Phone: </span>{Booking_data.phone}</p>
                                 <p className="text-sm mt-1"><span className='text-lg'>DOB: </span>{DOBDateString}</p>
-                                {/* <p className="text-sm mt-1"><span className='text-lg'>Service: </span>{Booking_data.service === "65da46c4340b35d4ec336cfa" ? "Not defined" : Booking_data.service}</p> Corrected comparison */}
-                                {/* <p className="text-sm mt-1"><span className='text-lg'>Slot: </span>{new Date(Booking_data.createdAt).toLocaleString()}</p> */}
-                                <p className="text-sm mt-1"><span className='text-lg'>Status: </span>{Booking_data.status}</p>
+                                { Booking_data.servicename ? 
+                                <p className="text-sm mt-1"><span className='text-lg'>Treatment: </span>{Booking_data.servicename}</p>
+                                : "" }
+                                <p className="text-sm mt-1"><span className='text-lg'>Slot: </span>{Booking_data.slot ? Slot(Booking_data.slot) : "Not Booked"}</p>
+                                <p className="text-sm mt-1"><span className='text-lg'>Booked at: </span>{new Date(Booking_data.createdAt).toLocaleString()}</p>
+                                <p className="text-sm mt-1"><span className='text-lg'>Status: </span>{Booking_data.status.toUpperCase()}</p>
                             </div>
                         </div>
                     </div>,

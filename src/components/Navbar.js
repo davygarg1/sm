@@ -61,17 +61,18 @@ export default function Navbar(props) {
                   {/* <image className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo"></image> */}
                 </button>
 
-                <div className={`z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600 right-0 top-12 absolute m-0 ${ isProfileOpen ? 'block' : 'hidden' }`} id="user-dropdown">
+                <div className={`z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow md:right-36 right-0  top-12 absolute m-0 ${ isProfileOpen ? 'block' : 'hidden' }`} id="user-dropdown">
                   <div className="px-4 py-3 hover:bg-blue-700 hover:text-white cursor-pointer">
-                    <span className="block text-lg">{localStorage.getItem("user") ? localStorage.getItem("user").toUpperCase() : "Hello"}</span>
+                    <span className="block text-lg">
+                      {localStorage.getItem("user") ? localStorage.getItem("user").toUpperCase() : "Hello"}</span>
                     <span className="block text-sm">welcome</span>
                   </div>
                   <ul className="py-2" aria-labelledby="user-menu-button">
                     <li>
-                      <Link to="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</Link>
+                      <Link to="/" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Dashboard</Link>
                     </li>
                     <li>
-                      <Link to='/' onClick={() => LogoutFn()} className="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white ">Sign out</Link>
+                      <Link to='/' onClick={() => LogoutFn()} className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Sign out</Link>
                     </li>
                   </ul>
                 </div></>

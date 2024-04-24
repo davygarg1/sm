@@ -9,6 +9,7 @@ function API(props) {
 	let navigate = useNavigate();
 	const [api, contextHolder] = notification.useNotification();
 	const AlertData = [api, contextHolder];
+    // const host = 'http://localhost:5000';
 	const host = 'https://api.samarpitam.com';
 	const [UserData, setUserData] = useState({});
 
@@ -43,9 +44,11 @@ function API(props) {
                     navigate('/Status');
                     openNotificationWithIcon( bool, "Consultation Status", "We Got Your Status", "bottomLeft" );
                 } else {
+					navigate('/Status');
                     openNotificationWithIcon( "error", "Consultation Status", json.msg , "bottomLeft");
                 }
             } else {
+				navigate('/Status');
                 openNotificationWithIcon( "error", "Consultation Status", "Validation Error", "bottomLeft");
             }
         } catch (error) {

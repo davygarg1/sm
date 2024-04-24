@@ -13,7 +13,6 @@ const MeetSchema = new Schema({
       },
       phone:{
          type: Number,
-         unique: true,
          require: true,
          trim: true
       },     
@@ -29,19 +28,25 @@ const MeetSchema = new Schema({
          type: mongoose.Schema.Types.ObjectId,
          ref:'services',
       }, 
-      slot:{
-         type: Date,
-         default: Date.now()
+      servicename:{
+         type: String,
       }, 
+      slot:{
+         type: Date
+      },
       massage:{
          type: String,
          default : "Not Fill",
          trim:true
-      }, 
+      },
+      active:{
+         type: Boolean,
+         default: true
+      },
       status:{
          type: String,
          default:"booking intialized"
-      }, 
+      },
 },{ timestamps: true });
 
 const Consultation = mongoose.model('Consultation',MeetSchema);

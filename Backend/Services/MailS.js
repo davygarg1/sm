@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-async function Mail(Mail) {
+async function MailS(Mail) {
 
     try {
 
@@ -9,7 +9,7 @@ async function Mail(Mail) {
             port: 465,
             secure: true,
             auth: {
-                user: "secure.services@samarpitam.com",
+                user: "support@samarpitam.com",
                 pass: "Jashan@1401",
             },
         });
@@ -31,4 +31,4 @@ async function Mail(Mail) {
     }
 }
 
-module.exports =  Mail
+module.exports = MailS

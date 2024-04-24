@@ -4,18 +4,162 @@ const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const Consultation = require("../Models/Consultations");
 const Treatments = require("../Models/Treatments");
-const Doctor = require("../Models/Doctor");
 const Testimonials = require("../Models/Testimonials");
-const mail = require('../Services/Mail');
+const Mail = require('../Services/Mail');
+const MailC = require('../Services/MailC');
+const MailS = require('../Services/MailS');
 const fs = require('fs');
 const path_book = '../Backend/Services/Mail_Tamplates/Consultation_book.html';
+const fetchuser = require('../Middleware/fetchtoken');
 const limiter = require('../Middleware/limiter')
+
+
+function Mailsendstatus(Status, Data) {
+
+	if (Status == 1) {
+
+			fs.readFile(path_book, 'utf8', (err, data) => {
+				if (err) {
+					console.error('Error reading HTML file:', err);
+				} else if (Data.email) {
+					const mail_data = {};
+					mail_data.to = Data.email;
+					mail_data.from = "secure.services@samarpitam.com";
+					mail_data.head = "Samarpitam";
+					mail_data.subject = "Consultation booking intialized";
+					mail_data.html = data;
+					Mail(mail_data);
+				};
+			});
+
+	} else if (Status == 2 && Data.email) {
+		const mail_data = {};
+		mail_data.to = Data.email;
+		mail_data.from = "secure.services@samarpitam.com";
+		mail_data.head = "Samarpitam";
+		mail_data.subject = "Payment Received For Consultation Booking";
+		mail_data.html = 
+		`<!DOCTYPE html>
+		<html lang="en">
+		<head>
+			<meta charset="UTF-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<title>Payment Received - Thank You</title>
+		</head>
+		<body style="font-family: Arial, sans-serif;">
+		
+			<div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px;">
+				<h2 style="text-align: center; color: #007bff;">Payment Received - Thank You!</h2>
+				
+				<p>Dear valued customer,</p>
+		
+				<p>We are writing to inform you that we have received your payment for consultations booking on Samarpitam. We truly appreciate your trust in our services.</p>
+		
+				<p>Your booking has been confirmed, and our team will be in touch with you shortly to schedule your consultation appointment.</p>
+		
+				<p>If you have any questions or need further assistance, please feel free to contact us at support@samarpitam.com.</p>
+		
+				<p>Once again, thank you for choosing Samarpitam for your consultation needs.</p>
+		
+				<p>Best regards,<br>
+				The Samarpitam Team</p>
+			</div>
+		
+		</body>
+		</html>`;
+		Mail(mail_data);
+		
+	} else if (Status == 3 && Data.email) {
+		const mail_data = {};
+		mail_data.to = Data.email;
+		mail_data.from = "consultation@samarpitam.com";
+		mail_data.head = "Samarpitam";
+		mail_data.subject = "Appointment booked";
+		mail_data.html = `<!DOCTYPE html>
+		<html lang="en">
+		<head>
+			<meta charset="UTF-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<title>Appointment Booked - Thank You</title>
+		</head>
+		<body style="font-family: Arial, sans-serif;">
+		
+			<div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px;">
+				<h2 style="text-align: center; color: #007bff;">Appointment Booked - Thank You!</h2>
+				
+				<p>Dear valued customer,</p>
+		
+				<p>We are pleased to inform you that your appointment has been successfully booked with us at the following date:</p>
+		
+				<p><strong>Date:</strong> ${new Date(Data.slot).toLocaleString()}</p>
+		
+				<p>We appreciate your trust in our services and look forward to meeting with you.</p>
+		
+				<p>If you have any questions or need to reschedule, please feel free to contact us at support@samarpitam.com.</p>
+		
+				<p>Thank you once again for choosing Samarpitam for your consultation needs.</p>
+		
+				<p>Best regards,<br>
+				The Samarpitam Team</p>
+			</div>
+		
+		</body>
+		</html>`;
+		MailC(mail_data);
+		
+	} else if (Status == 4 && Data.email) {
+		const mail_data = {};
+		mail_data.to = Data.email;
+		mail_data.from = "support@samarpitam.com";
+		mail_data.head = "Samarpitam";
+		mail_data.subject = "Consultation booking intialized";
+		mail_data.html = `<!DOCTYPE html>
+		<html lang="en">
+		<head>
+			<meta charset="UTF-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<title>Consultation Completed - Thank You</title>
+		</head>
+		<body style="font-family: Arial, sans-serif;">
+		
+			<div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px;">
+				<h2 style="text-align: center; color: #007bff;">Consultation Completed - Thank You!</h2>
+				
+				<p>Dear valued customer,</p>
+		
+				<p>We are pleased to inform you that your consultation has been successfully completed with us.</p>
+				
+				<p>We sincerely appreciate your trust in our services. Your satisfaction is very important to us.</p>
+		
+				<p>As part of our commitment to continuous improvement, we would greatly appreciate it if you could take a moment to rate your experience with us.</p>
+		
+				<p>Your feedback helps us enhance our services and better serve.</p>
+		
+				<p>Additionally, we wish you a healthy and fulfilling life. Your well-being is our utmost priority.</p>
+		
+				<p>If you have any further questions or need additional assistance, please don't hesitate to contact us at support@samarpitam.com.</p>
+		
+				<p>Thank you once again for choosing Samarpitam for your consultation needs. We look forward to serving you again in the future.</p>
+		
+				<p>Best regards,<br>
+				The Samarpitam Team</p>
+			</div>
+		
+		</body>
+		</html>`;
+		MailS(mail_data);
+
+	}
+}
 
 router.post("/Book",
 	body("name", "name min 3 length").isLength({ min: 3 }),
 	body("phone", "Invaild Phone number").isLength({ min: 10, max: 10 }).isNumeric().isMobilePhone(),
 	body("email", "Enter a vaild email").optional().isEmail(),
-	limiter ,
+	// limiter,
 	async (req, res) => {
 		try {
 
@@ -28,7 +172,7 @@ router.post("/Book",
 
 			//  collect data form server 
 
-			const { name, phone, DOB, service, email, userid , massage } = req.body;
+			const { name, phone, DOB, service, email, userid, massage } = req.body;
 			const booking_data = { name, phone, DOB };
 			if (email) { booking_data.email = email }
 			if (userid) { booking_data.user = userid }
@@ -37,7 +181,7 @@ router.post("/Book",
 
 			// checking user allready exist or not
 
-			const finduserexist = await Consultation.findOne({ phone: phone });
+			const finduserexist = await Consultation.findOne({ phone: phone, active: true });
 			if (finduserexist) {
 				return res.status(409).json({ "error": "Ture", "msg": "Consultation booking already exist" });
 			}
@@ -45,9 +189,9 @@ router.post("/Book",
 			// checking service is active now or not
 
 			const Treatments_check = await Treatments.findOne({ _id: service });
-			if (Treatments_check && Treatments_check.status == false) {
-				Doctor = await Doctor.findOne({ _id: Treatments_check.user });
-				booking_data.service = service;
+			if (Treatments_check) {	
+				booking_data.service = Treatments_check._id ;
+				booking_data.servicename = Treatments_check.name ;
 			}
 
 			// book Consultation in mongodb
@@ -56,15 +200,6 @@ router.post("/Book",
 
 			//  if got email then send email 
 
-			// date to indian time
-
-			function date(dateString) {
-				const dateObject = new Date(dateString);
-				const IST_offset = 5.5 * 60 * 60 * 1000; // IST is UTC+5:30
-				const IST_dateObject = new Date(dateObject.getTime() + IST_offset);
-				return IST_dateObject;
-			}
-			
 			fs.readFile(path_book, 'utf8', (err, data) => {
 				if (err) {
 					console.error('Error reading HTML file:', err);
@@ -75,7 +210,7 @@ router.post("/Book",
 					mail_data.head = "Samarpitam";
 					mail_data.subject = "Consultation booking intialized";
 					mail_data.html = data;
-					mail(mail_data);
+					Mail(mail_data);
 				};
 			});
 
@@ -141,14 +276,15 @@ router.post("/Book",
 						<li><strong>Name:</strong> ${booking_details.name}</li>
 						<li><strong>Phone:</strong> ${booking_details.phone}</li>
 						<li><strong>Email:</strong> ${booking_details.email}</li>
-						<li><strong>DOB:</strong> ${booking_details.DOB}</li>
+						<li><strong>DOB:</strong> ${new Date(booking_details.DOB).toLocaleString()}</li>
 						<li><strong>Treatment:</strong> ${Treatments_check ? Treatments_check.name : "Not define"}</li>
 						<li><strong>Doctor:</strong> ${Doctor ? Doctor.name : "Not define"}</li>
 						<li><strong>Message:</strong> ${booking_details?.massage}</li>
+						<li><strong>Slot:</strong> ${booking_details.slot ? new Date(booking_details.slot).toLocaleString() : "Not Booked"}</li>
 						<li><strong>Status:</strong> ${booking_details.status}</li>
 						<li><strong>Terms and Conditions:</strong>Agree</li>
-						<li><strong>Book At:</strong> ${date(booking_details.createdAt)}</li>
-						<li><strong>Updated At:</strong> ${date(booking_details.updatedAt)}</li>
+						<li><strong>Book At:</strong> ${new Date(booking_details.createdAt).toLocaleString()}</li>
+						<li><strong>Updated At:</strong> ${new Date(booking_details.updatedAt).toLocaleString()}</li>
 					</ul>
 					<p>Please ensure that you call on time for fix appointment with user. If you need to cancel or reschedule, kindly inform us at least 24 hours in advance.</p>
 					<p>For any inquiries or assistance, feel free to contact Dr. Sumeet Saini.</p>
@@ -166,7 +302,7 @@ router.post("/Book",
 
 			mail_data.html = htmlContent;
 
-			mail(mail_data);
+			Mail(mail_data);
 
 
 			res.json({ "error": "false", booking_details });
@@ -174,12 +310,28 @@ router.post("/Book",
 		} catch (error) {
 			return res.status(500).json({ "error": error.message, "msg": "Intarnal server error" });
 		}
-	}
-);
+	});
 
-router.post("/Update",
-	body("phone", "Invaild Phone number").isLength({ min: 10, max: 10 }).isNumeric().isMobilePhone(),
-	body("slot", "Invaild Date").isDate(),
+router.get("/status/:phone",
+	async (req, res) => {
+		try {
+
+			let Data = await Consultation.find({ phone: req.params.phone , active: true });
+			if (Data.length > 0) {
+				res.json({ "error": "false", Data })
+			} else {
+				res.json({ "error": "true", "msg": "Record not found" });
+			}
+
+		} catch (error) {
+			return res.status(500).json({ "error": error.message, "msg": "Intarnal server error" });
+		}
+	});
+
+router.post("/Testimonial",
+	body("name", "name min 3 length").isLength({ min: 3 }),
+	body("star", "Invaild Rating").isLength({ min: 1, max: 1 }).isNumeric(),
+	limiter,
 	async (req, res) => {
 		try {
 
@@ -190,140 +342,61 @@ router.post("/Update",
 				return res.status(403).json({ ValidationErrors: errors.array(), "error": "True", "msg": "Syntax error" });
 			}
 
-			const { phone, service, slot, status } = req.body;
-			const slot_data = { slot, status };
-			if (service) { slot_data.service = service }
+			//  collect data form server 
 
-
-			//  update slot of user
-
-
-			let Data = await Consultation.findOneAndUpdate({ phone: phone }, { $set: slot_data }, { new: true });
-			let Doctor = false;
-			const Treatments_check = await Service.findOne({ _id: Data.service });
-			if (Treatments_check && Treatments_check.status == false) {
-				Doctor = await Doctor.findOne({ _id: Treatments_check.user });
-			}
-
-
-			// Create a new Date object using the slot timestamp
-			const slotDate = new Date(Data.slot);
-
-			// Get the date components
-			const year = slotDate.getFullYear();
-			const month = slotDate.getMonth() + 1; // January is 0, so we add 1
-			const day = slotDate.getDate();
-
-			// Get the time components
-			const hours = slotDate.getHours();
-			const minutes = slotDate.getMinutes();
-			const seconds = slotDate.getSeconds();
-
-
-			if (Data.email) {
-				const mail_data = {};
-				mail_data.to = Data.email, "samarpitamchikitsalaya@gmail.com";
-				mail_data.from = "secure.services@samarpitam.com";
-				mail_data.head = "Samarpitam";
-				mail_data.subject = "Consultation booking Detailes";
-
-				// Format booking details into HTML
-				const htmlContent = `
-			<!DOCTYPE html>
-			<html lang="en">
-			<head>
-				<meta charset="UTF-8">
-				<meta name="viewport" content="width=device-width, initial-scale=1.0">
-				<title>Consultation Slot Booking Confirmation</title>
-			</head>
-			<body style="font-family: Arial, sans-serif;">
-
-				<div style="max-width: 600px; margin: 0 auto; padding: 20px;">
-					
-					<h2>Consultation Slot Booking Confirmation</h2>
-
-					<p>Dear [User's Name],</p>
-
-					<p>Your consultation slot has been successfully booked. Here are the details:</p>
-
-					<ul>
-						<li><strong>User:</strong>${Data.name}</li>
-						<li><strong>Slot:</strong></li>
-						<li><strong>Date:</strong>${year}-${month}-${day}</li>
-						<li><strong>Time:</strong>${hours}:${minutes}:${seconds}</li>
-						<li><strong>Consultant:</strong>${Doctor ? Doctor.name : "Not define"}</li>
-						<li><strong>Consultation Type:</strong>Online Phone Call</li>
-					</ul>
-
-					<p>Please make sure to arrive on time for your consultation appointment.</p>
-
-					<p>Should you have any questions or need to reschedule, please contact us at 9815209389.</p>
-
-					<p>Thank you for choosing our services!</p>
-
-					<p>Best regards,<br>
-					The Samarpitam Team</p>
-
-				</div>
-
-			</body>
-			</html>
-
-
-
-			`;
-
-				mail_data.html = htmlContent;
-
-				mail(mail_data);
-			}
-			res.json({ "error": false, Data })
-		} catch (error) {
-			return res.status(500).json({ "error": error.message, "msg": "Intarnal server error" });
-		}
-	});
-
-router.get("/status/:phone",
-	async (req, res) => {
-		try {
-
-			let Data = await Consultation.find({ phone: req.params.phone });
-			if (Data.length > 0) {
-				res.json({ "error": "false", Data })
-			} else {
-				res.json({ "error": "true", "msg":"Record not found" });
-			}
-
-		} catch (error) {
-			return res.status(500).json({ "error": error.message, "msg": "Intarnal server error" });
-		}
-	});
-
-
-router.post("/Testimonial",
-body("name", "name min 3 length").isLength({ min: 3 }),
-body("star", "Invaild Rating").isLength({ min: 1, max: 1 }).isNumeric(),
-limiter ,
-	async (req, res) => {
-		try {
-
-				// checking user input fileds
-
-				const errors = validationResult(req);
-				if (!errors.isEmpty()) {
-					return res.status(403).json({ ValidationErrors: errors.array(), "error": "True", "msg": "Syntax error" });
-				}
-	
-				//  collect data form server 
-	
-				const { name, star , massage , userid } = req.body;
-				const Testimonial_data = { name, star };
-				if (userid) { Testimonial_data.user = userid }
-				if (massage) { Testimonial_data.massage = massage }
+			const { name, star, massage, userid } = req.body;
+			const Testimonial_data = { name, star };
+			if (userid) { Testimonial_data.user = userid }
+			if (massage) { Testimonial_data.massage = massage }
 
 			let Data = await Testimonials.create(Testimonial_data);
 
-				res.json({ "error": "false", Data })
+			res.json({ "error": "false", Data })
+
+		} catch (error) {
+			return res.status(500).json({ "error": error.message, "msg": "Intarnal server error" });
+		}
+	});
+
+router.post("/Consultations_update/",
+	body("Status", "Invaild Status").isString(),
+	fetchuser, async (req, res) => {
+		try {
+
+			// checking user input fileds
+
+			const errors = validationResult(req);
+			if (!errors.isEmpty()) {
+				return res.status(403).json({ ValidationErrors: errors.array(), "error": "True", "msg": "Syntax error" });
+			}
+
+			const userdata = req.data.Userinfo;
+
+			if (userdata.type === "Admin") {
+
+				var { name, email, phone, slot, Status, id } = req.body;
+
+				const check = await Consultation.findOne({ _id: id });
+				if (!check) { return res.status(409).json({ "error": "true", "msg": "Invalid Consultation" }) }
+
+				const NewUser = {}
+				if (name) { NewUser.name = name }
+				if (email) { NewUser.email = email }
+				if (phone) { NewUser.phone = phone }
+				if (Status == 1) { NewUser.status = "booking intialized" }
+				if (Status == 2) { NewUser.status = "Payment Received" }
+				if (Status == 3) { NewUser.status = "Slot confirmed" , NewUser.slot = slot }
+				if (Status == 4) { NewUser.status = "Consultation completed", NewUser.active = false }
+
+
+				let Data = await Consultation.findOneAndUpdate({ _id: id }, { $set: NewUser }, { new: true });
+				Mailsendstatus(Status, Data);
+				return res.json({ "error": "false", "msg": "Consultation Status Changed", Data });
+
+			}
+
+			return res.json({ "error": "true", "msg": "Unauthorized access" });
+
 
 		} catch (error) {
 			return res.status(500).json({ "error": error.message, "msg": "Intarnal server error" });
