@@ -6,7 +6,6 @@ const Treatments = require('./Models/Treatments');
 const Doctor = require('./Models/Doctor');
 const User = require('./Models/User');
 const Blog = require('./Models/Blog');
-const Admin = require('./Models/Admin');
 require('dotenv').config();
 
 const dbConnectionString = process.env.DB_CONNECTION_STRING;

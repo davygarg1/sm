@@ -150,31 +150,6 @@ router.get("/Doctor/:id/:action", fetchuser , async (req, res) => {
 }
 );
 
-router.post("/Doctor/update", fetchuser , async (req, res) => {
-	try {
-
-		const userdata = req.data.Userinfo;
-		var { Name, description, status, id } = req.body;
-		let NewUser = {  name: Name, description, status }
-
-		if (userdata.type === "Admin") {
-
-			const check = await Doctors.findOne({_id:id});
-			if(!check){return res.status(409).json({"error":"true","msg":"Doctor not found"})}
-	
-			let Data = await Doctors.findOneAndUpdate({_id:id},{$set:NewUser},{new:true});
-			return res.json({"error":"false","msg":"Doctor Status Changed", Data});
-
-		}
-		return res.json({"error":"true","msg":"Unauthorized access"});
-
-
-	} catch (error) {
-		return res.status(500).json({ "error": error.message, "msg": "Intarnal server error" });
-	}
-}
-);
-
 router.get("/client/:id", fetchuser , async (req, res) => {
 	try {
 

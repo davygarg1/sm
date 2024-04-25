@@ -8,15 +8,13 @@ require('dotenv').config();
 var jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET;
 const User = require("../Models/User");
-const Admin = require("../Models/Admin");
+const Doctor = require("../Models/Doctor");
 const Mail = require('../Services/Mail');
 const fs = require('fs');
 const path_Welcome = '../Backend/Services/Mail_Tamplates/Welcome.html';
 
-// signup endpoints
 
-router.post(
-	"/Register",
+router.post("/Register",
 	body("name", "name min 3 length").isLength({ min: 3 }),
 	body("phone", "Invaild Phone number").isLength({ min: 10, max: 10 }).isNumeric().isMobilePhone(),
 	body("email", "Enter a vaild email").optional().isEmail(),
@@ -85,10 +83,7 @@ router.post(
 	}
 );
 
-// login endpoints
-
-router.post(
-	"/login",
+router.post("/login",
 	body("phone", "Invaild Phone number").isLength({ min: 10, max: 10 }).isNumeric().isMobilePhone(),
 	body("password", "password should be atleast 5 length").isLength({ min: 5 }),
 	async (req, res) => {
@@ -132,8 +127,6 @@ router.post(
 	}
 );
 
-// let user loged in authication  
-
 router.get("/authication", fetchuser, async (req, res) => {
 	try {
 		const userid = req.data.Userinfo.id;
@@ -147,68 +140,7 @@ router.get("/authication", fetchuser, async (req, res) => {
 
 });
 
-
-
-//  Admin register endpoints
-
-router.post(
-	"/AdminRegister",
-	body("name", "name min 3 length").isLength({ min: 3 }),
-	body("phone", "Invaild Phone number").isLength({ min: 10, max: 10 }).isNumeric().isMobilePhone(),
-	body("password", "password should be atleast 5 length").isLength({ min: 5 }),
-	async (req, res) => {
-		try {
-
-			// checking user input fileds
-
-			const errors = validationResult(req);
-			if (!errors.isEmpty()) {
-				return res.status(403).json({ ValidationErrors: errors.array(), "error": "True", "msg": "Syntax error" });
-			}
-
-			//  checking not req fileds
-
-			const { name, phone } = req.body;
-			const NewUser = { name, phone };
-
-			// checking user allready exist or not
-
-			const finduserexist = await Admin.findOne({ phone: req.body.phone });
-			if (finduserexist) {
-				return res.status(409).json({ "error": "Ture", "msg": "sorry user with this email already exist" });
-			}
-
-
-
-			// hashing password
-
-			await bcrypt.genSalt(10, async function (err, salt) {
-				await bcrypt.hash(req.body.password, salt, async function (_err, hash) {
-					// Store hash in your password DB.
-					NewUser.password = hash;
-					const user = await Admin.create(NewUser);
-					// create token for a user
-					const data = {
-						Userinfo: {
-							id: user.id,
-							type: "Admin"
-						},
-					};
-					const token = jwt.sign(data, JWT_SECRET);
-					res.json({ "error": "false", token });
-				});
-			});
-		} catch (error) {
-			return res.status(500).json({ "error": error.message, "msg": "Intarnal server error" });
-		}
-	}
-);
-
-
-// Admin  login endpoints
-
-router.post(
-	"/Adminlogin",
+router.post("/Adminlogin",
 	body("phone", "Invaild Phone number").isLength({ min: 10, max: 10 }).isNumeric().isMobilePhone(),
 	body("password", "password should be atleast 5 length").isLength({ min: 5 }),
 	async (req, res) => {
@@ -225,9 +157,15 @@ router.post(
 
 			const { phone, password } = req.body;
 
-			const Userinfo = await Admin.findOne({ phone });
+			const Userinfo = await Doctor.findOne({ phone });
 			if (!Userinfo) {
 				return res.status(403).json({ "error": "Ture", "msg": "sorry user with this Phone number can't exist" });
+			}
+
+			// check docter active or not 
+
+			if (!Userinfo.status) {
+				return res.status(403).json({ "error": "Ture", "msg": "User account inactive" });
 			}
 
 			//  checking password
@@ -253,13 +191,11 @@ router.post(
 	}
 );
 
-// let user loged in authication  
-
 router.get("/adminauthication", fetchuser, async (req, res) => {
 	try {
 		const userdata = req.data.Userinfo;
-		const user = await Admin.findOne({ _id: userdata.id }).select("-password")
-		res.json({ "error": "true", user , userdata })
+		const user = await Doctor.findOne({ _id: userdata.id }).select("-password")
+		res.json({ "error": "false", user , userdata })
 
 	} catch (error) {
 		return res.status(500).json({ "error": error.message, "msg": "Intarnal server error" });
@@ -267,6 +203,40 @@ router.get("/adminauthication", fetchuser, async (req, res) => {
 
 
 });
+
+router.post("/Doctor/update", fetchuser , async (req, res) => {
+	try {
+
+		const userdata = req.data.Userinfo;
+
+		if (userdata.type === "Admin") {
+
+			const check = await Doctor.findOne({_id: userdata.id});
+			if(!check){return res.status(409).json({"error":"true","msg":"Doctor not found"})}
+
+			const NewUser = {};
+
+			// hashing password
+
+			await bcrypt.genSalt(10, async function (err, salt) {
+				await bcrypt.hash(req.body.confirm, salt, async function (_err, hash) {
+					// Store hash in your password DB.
+					NewUser.password = hash;
+				});
+			});	
+
+			await Doctor.findOneAndUpdate({_id:userdata.id},{$set:NewUser},{new:true});
+			return res.json({"error":"false","msg":"Doctor Password Changed"});
+
+		}
+		return res.json({"error":"true","msg":"Unauthorized access"});
+
+
+	} catch (error) {
+		return res.status(500).json({ "error": error.message, "msg": "Intarnal server error" });
+	}
+}
+);
 
 
 

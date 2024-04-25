@@ -2,10 +2,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
-const bcrypt = require("bcrypt");
 const Treatments = require("../Models/Treatments");
 const Doctor = require("../Models/Doctor");
 const Blog = require("../Models/Blog");
+const bcrypt = require("bcrypt");
 var jwt = require("jsonwebtoken");
 require('dotenv').config();
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -70,8 +70,7 @@ router.post("/Blog",
         }
     });
 
-router.post(
-    "/Register",
+router.post("/Doctor/Register",
     body("name", "name min 3 length").isLength({ min: 3 }),
     body("email", "Enter a vaild email").optional().isEmail(),
     body("description", "description is req").isLength({ min: 3 }).isString(),
@@ -80,7 +79,8 @@ router.post(
     body("experience", "experience").isNumeric(),
     body("status", "status is req").isBoolean(),
     body("url", "url not vaild").isString(),
-    body("password", "password should be atleast 5 length").isLength({ min: 5 }),
+    body("phone", "Invaild Phone number").isLength({ min: 10, max: 10 }).isNumeric().isMobilePhone(),
+	body("password", "password should be atleast 5 length").isLength({ min: 5 }),
     async (req, res) => {
         try {
 
@@ -93,14 +93,21 @@ router.post(
 
             //  checking not req fileds
 
-            const { name, email, description, study, star, experience, status, url } = req.body;
-            const NewUser = { name, email, description, study, star, experience, status, url };
+            const { name, email, description, study, star, experience, status, url, phone } = req.body;
+            const NewUser = { name, email, description, study, star, experience, status, url, phone };
 
             // checking user allready exist or not
 
             const finduserexist = await Doctor.findOne({ email: req.body.email });
             if (finduserexist) {
                 return res.status(409).json({ "error": "Ture", "msg": "sorry user with this email already exist" });
+            }
+
+            // checking user allready exist or not
+
+            const finduserexistpn = await Doctor.findOne({ email: req.body.phone });
+            if (finduserexistpn) {
+                return res.status(409).json({ "error": "Ture", "msg": "sorry user with this phone already exist" });
             }
 
             // hashing password

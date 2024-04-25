@@ -7,6 +7,12 @@ const DoctorSchema = new Schema({
       require: true,
       trim: true
    },
+   phone:{
+      type: Number,
+      unique: true,
+      require: true,
+      trim: true
+   },
    email: {
       type: String,
       unique: true

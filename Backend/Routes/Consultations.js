@@ -71,6 +71,12 @@ function Mailsendstatus(Status, Data) {
 		Mail(mail_data);
 		
 	} else if (Status == 3 && Data.email) {
+		function convertTodate(timestamp) {
+			const date = new Date(timestamp);
+			const istOffset = 5.5 * 60 * 60 * 1000;
+			const istDate = new Date(date.getTime() + istOffset);
+			return istDate.toLocaleString();
+		}
 		const mail_data = {};
 		mail_data.to = Data.email;
 		mail_data.from = "consultation@samarpitam.com";
@@ -93,7 +99,7 @@ function Mailsendstatus(Status, Data) {
 		
 				<p>We are pleased to inform you that your appointment has been successfully booked with us at the following date:</p>
 		
-				<p><strong>Date:</strong> ${new Date(Data.slot).toLocaleString()}</p>
+				<p><strong>Date:</strong> ${convertTodate(Data.slot)}</p>
 		
 				<p>We appreciate your trust in our services and look forward to meeting with you.</p>
 		
@@ -159,7 +165,7 @@ router.post("/Book",
 	body("name", "name min 3 length").isLength({ min: 3 }),
 	body("phone", "Invaild Phone number").isLength({ min: 10, max: 10 }).isNumeric().isMobilePhone(),
 	body("email", "Enter a vaild email").optional().isEmail(),
-	// limiter,
+	limiter,
 	async (req, res) => {
 		try {
 
@@ -197,6 +203,13 @@ router.post("/Book",
 			// book Consultation in mongodb
 
 			const booking_details = await Consultation.create(booking_data);
+
+			function convertTodate(timestamp) {
+				const date = new Date(timestamp);
+				const istOffset = 5.5 * 60 * 60 * 1000;
+				const istDate = new Date(date.getTime() + istOffset);
+				return istDate.toLocaleString();
+			}
 
 			//  if got email then send email 
 
@@ -276,15 +289,15 @@ router.post("/Book",
 						<li><strong>Name:</strong> ${booking_details.name}</li>
 						<li><strong>Phone:</strong> ${booking_details.phone}</li>
 						<li><strong>Email:</strong> ${booking_details.email}</li>
-						<li><strong>DOB:</strong> ${new Date(booking_details.DOB).toLocaleString()}</li>
+						<li><strong>DOB:</strong> ${new Date(booking_details.DOB).toLocaleDateString()}</li>
 						<li><strong>Treatment:</strong> ${Treatments_check ? Treatments_check.name : "Not define"}</li>
 						<li><strong>Doctor:</strong> ${Doctor ? Doctor.name : "Not define"}</li>
 						<li><strong>Message:</strong> ${booking_details?.massage}</li>
-						<li><strong>Slot:</strong> ${booking_details.slot ? new Date(booking_details.slot).toLocaleString() : "Not Booked"}</li>
+						<li><strong>Slot:</strong> ${booking_details.slot ? convertTodate(booking_details.slot) : "Not Booked"}</li>
 						<li><strong>Status:</strong> ${booking_details.status}</li>
 						<li><strong>Terms and Conditions:</strong>Agree</li>
-						<li><strong>Book At:</strong> ${new Date(booking_details.createdAt).toLocaleString()}</li>
-						<li><strong>Updated At:</strong> ${new Date(booking_details.updatedAt).toLocaleString()}</li>
+						<li><strong>Book At:</strong> ${convertTodate(booking_details.createdAt)}</li>
+						<li><strong>Updated At:</strong> ${convertTodate(booking_details.updatedAt)}</li>
 					</ul>
 					<p>Please ensure that you call on time for fix appointment with user. If you need to cancel or reschedule, kindly inform us at least 24 hours in advance.</p>
 					<p>For any inquiries or assistance, feel free to contact Dr. Sumeet Saini.</p>
@@ -374,7 +387,7 @@ router.post("/Consultations_update/",
 
 			if (userdata.type === "Admin") {
 
-				var { name, email, phone, slot, Status, id } = req.body;
+				var { name, email, phone, slot, Status, treatment, id } = req.body;
 
 				const check = await Consultation.findOne({ _id: id });
 				if (!check) { return res.status(409).json({ "error": "true", "msg": "Invalid Consultation" }) }
@@ -383,6 +396,7 @@ router.post("/Consultations_update/",
 				if (name) { NewUser.name = name }
 				if (email) { NewUser.email = email }
 				if (phone) { NewUser.phone = phone }
+				if (treatment) { NewUser.servicename = treatment }
 				if (Status == 1) { NewUser.status = "booking intialized" }
 				if (Status == 2) { NewUser.status = "Payment Received" }
 				if (Status == 3) { NewUser.status = "Slot confirmed" , NewUser.slot = slot }
