@@ -18,7 +18,6 @@ import Status from './components/Status'
 import Scroll from './components/Scroll'
 import TC from './components/TC'
 
-
 function App() {
   return (
     <>
@@ -94,5 +93,3 @@ const router = createBrowserRouter([
 ]);
 
 export default router;
-
-

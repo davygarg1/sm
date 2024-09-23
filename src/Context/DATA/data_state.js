@@ -12,8 +12,8 @@ function DATA(props) {
     const [Testimonials, setTestimonials] = useState({});
     const [Blog_data, setBlog_data] = useState({});
     const [Blog, setBlog] = useState({});
-    // const host = 'http://localhost:5000';
-    const host = 'https://api.samarpitam.com';
+    const host = 'http://localhost:5000';
+    // const host = 'https://api.samarpitam.com';
     const Contextdata = useContext(API);
     const { openNotificationWithIcon } = Contextdata;
 
@@ -42,21 +42,21 @@ function DATA(props) {
         try {
 
             if (bool === "success") {
-            const  _id = values._id;
+                const _id = values._id;
 
-            const customConfig = {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            };
+                const customConfig = {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                };
 
-            const respose = await axios.get(
-                `${host}/api/Data/Blog_data/${_id}`,
-                customConfig
-            );
+                const respose = await axios.get(
+                    `${host}/api/Data/Blog_data/${_id}`,
+                    customConfig
+                );
 
-            const json = await respose.data;
-            setBlog_data(json);
+                const json = await respose.data;
+                setBlog_data(json);
 
             } else {
                 navigate("/");
@@ -93,7 +93,7 @@ function DATA(props) {
             openNotificationWithIcon("error", "Blog", error.response.data.msg ? error.response.data.msg : "Server Error", "bottomLeft");
         }
     }
-    
+
     async function get_Testimonials() {
         try {
             const customConfig = {
@@ -138,52 +138,52 @@ function DATA(props) {
         try {
             if (bool === "success") {
 
-                if( values.user.check){
+                if (values.user.check) {
 
-                //  checking not req fileds
+                    //  checking not req fileds
 
-                const { name, phone, email, dob , massage } = values.user;
-                const { service } = values;
-                const booking_details = { name, phone, "DOB":dob };
+                    const { name, phone, email, dob, massage } = values.user;
+                    const { service } = values;
+                    const booking_details = { name, phone, "DOB": dob };
 
-                const date = new Date(dob);
-                const options = { 
-                    weekday: 'long', 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric' 
-                };
-                const localizedDateString = date.toLocaleDateString(undefined, options);
-                
-                booking_details.DOB = localizedDateString;
-                if (email) { booking_details.email = email.toLowerCase() };
-                if (service) { booking_details.service = service };
-                if (massage) { booking_details.massage = massage };
-                if (localStorage.getItem("token") && localStorage.getItem("user_id")) { booking_details.userid = localStorage.getItem("user_id") };
+                    const date = new Date(dob);
+                    const options = {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    };
+                    const localizedDateString = date.toLocaleDateString(undefined, options);
 
-                const customConfig = {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                };
+                    booking_details.DOB = localizedDateString;
+                    if (email) { booking_details.email = email.toLowerCase() };
+                    if (service) { booking_details.service = service };
+                    if (massage) { booking_details.massage = massage };
+                    if (localStorage.getItem("token") && localStorage.getItem("user_id")) { booking_details.userid = localStorage.getItem("user_id") };
 
-                const respose = await axios.post(
-                    `${host}/api/consultation/Book`,
-                    booking_details,
-                    customConfig
-                );
-                const json = await respose.data;
+                    const customConfig = {
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    };
 
-                if (json.error === "false") {
-                    Data.bookingData = json.booking_details;
-                    navigate('/Status');
-                    openNotificationWithIcon(
-                        bool,
-                        "Consultation",
-                        "Booking Initialized",
-                        "bottomLeft"
+                    const respose = await axios.post(
+                        `${host}/api/consultation/Book`,
+                        booking_details,
+                        customConfig
                     );
-                }
+                    const json = await respose.data;
+
+                    if (json.error === "false") {
+                        Data.bookingData = json.booking_details;
+                        navigate('/Status');
+                        openNotificationWithIcon(
+                            bool,
+                            "Consultation",
+                            "Booking Initialized",
+                            "bottomLeft"
+                        );
+                    }
 
                 } else {
                     openNotificationWithIcon(
@@ -212,8 +212,8 @@ function DATA(props) {
 
                 //  checking not req fileds
 
-                const { name, star , massage } = values;
-                const Testimonial_details = { name , star };
+                const { name, star, massage } = values;
+                const Testimonial_details = { name, star };
                 if (massage) { Testimonial_details.massage = massage };
                 if (localStorage.getItem("token") && localStorage.getItem("user_id")) { Testimonial_details.userid = localStorage.getItem("user_id") };
 
@@ -270,12 +270,12 @@ function DATA(props) {
                 if (json.error === "false") {
                     Data.bookingData = json.Data[0];
                     navigate('/Status');
-                    openNotificationWithIcon( bool, "Consultation Status", "We Got Your Status", "bottomLeft" );
+                    openNotificationWithIcon(bool, "Consultation Status", "We Got Your Status", "bottomLeft");
                 } else {
-                    openNotificationWithIcon( "error", "Consultation Status", json.msg , "bottomLeft");
+                    openNotificationWithIcon("error", "Consultation Status", json.msg, "bottomLeft");
                 }
             } else {
-                openNotificationWithIcon( "error", "Consultation Status", "Validation Error", "bottomLeft");
+                openNotificationWithIcon("error", "Consultation Status", "Validation Error", "bottomLeft");
             }
         } catch (error) {
             openNotificationWithIcon("error", "Consultation Status", error.response.data ? error.response.data : "Server Error", "bottomLeft");
@@ -284,7 +284,7 @@ function DATA(props) {
 
     return (
         <Data.Provider
-            value={{ get_Doctor, Doctor, Treatments, get_Treatments, ConsultationFn , StatusFn , get_Testimonials , Testimonials , TestimonialsFn , get_blog , Blog , get_Blog_Data , Blog_data }}>
+            value={{ get_Doctor, Doctor, Treatments, get_Treatments, ConsultationFn, StatusFn, get_Testimonials, Testimonials, TestimonialsFn, get_blog, Blog, get_Blog_Data, Blog_data }}>
             {props.children}
         </Data.Provider>
     )

@@ -17,9 +17,9 @@ function Footer() {
 	const phoneNumber = '9815209389';
 
 	const handleClick = () => {
-        navigator.clipboard.writeText(phoneNumber);
-        window.location.href = `tel:${phoneNumber}`;
-    };
+		navigator.clipboard.writeText(phoneNumber);
+		window.location.href = `tel:${phoneNumber}`;
+	};
 
 	return (
 		<>
@@ -59,7 +59,7 @@ function Footer() {
 								Contact Us
 							</h2>
 							<ul className="text-gray-500 font-extralight md:font-medium md:tex-sm">
-								<li className="mb-4" onClick={()=>handleClick()}>
+								<li className="mb-4" onClick={() => handleClick()}>
 									<Link to="tel:9815209389" className="hover:text-blue-500">
 										9815209389
 									</Link>
@@ -81,7 +81,7 @@ function Footer() {
 
 						<div className="hidden md:block">
 							<h2 className="mb-6 text-sm font-semibold text-white uppercase">
-							  Explore More
+								Explore More
 							</h2>
 							<ul className="text-gray-500 font-extralight md:font-medium md:tex-sm">
 								{navigation.map((menu, index) => (

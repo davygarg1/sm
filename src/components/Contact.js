@@ -77,7 +77,7 @@ function Contact() {
 			<section className="dark bg-gray-900 mb-8">
 				<span className='w-screen h-4/6 bg-blend-multiply bg-no-repeat bg-cover opacity-20 absolute -z-0' style={{ "background-image": `url(${ContactPhoto})` }}></span>
 				<div className="relative py-8 lg:py-16 px-4 mx-auto max-w-screen-md flex flex-col justify-center items-center">
-					<h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Feedback Us</h2>
+					<h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-white">Feedback Us</h2>
 					<p className="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">We all need people who will give us feedback.That's how we improve.
 </p>
 					<div className='bg-white w-5/6 md:w-4/6 md:p-12 p-8  rounded-lg flex flex-col justify-center items-center'>

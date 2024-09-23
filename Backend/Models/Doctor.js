@@ -13,6 +13,9 @@ const DoctorSchema = new Schema({
       require: true,
       trim: true
    },
+   Room:{
+      type:Array,
+   },
    email: {
       type: String,
       unique: true

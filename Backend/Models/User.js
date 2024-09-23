@@ -12,7 +12,10 @@ const UserSchema = new Schema({
          unique: true,
          require: true,
          trim: true
-      },     
+      },  
+      Room:{
+         type:Array,
+      },
       email:{
         type: String,
         unique: true
