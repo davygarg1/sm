@@ -491,6 +491,13 @@ router.post('/send_invoice',fetchuser, [
 				// Send email via MailC
 				let mailinfo =  await MailC(mail_data);
 
+				 // Delete the PDF file after sending the email
+				 fs.unlink(pdfPath, (unlinkErr) => {
+					if (unlinkErr) {
+						console.error('Error deleting PDF file:', unlinkErr);
+					}
+				});
+
 				if (mailinfo.sent) {			
 					return res.status(200).json({ "error": "false", "msg": 'Invoice sent successfully!', 'info':mailinfo.info });
 				} else {
@@ -561,6 +568,13 @@ router.get('/resend_invoice/:invoiceId', fetchuser, async (req, res) => {
 
             // Send email via MailC
             let mailinfo = await MailC(mail_data);
+
+			 // Delete the PDF file after sending the email
+			 fs.unlink(pdfPath, (unlinkErr) => {
+				if (unlinkErr) {
+					console.error('Error deleting PDF file:', unlinkErr);
+				}
+			});
 
             if (mailinfo.sent) {			
                 return res.status(200).json({ "error": "false", "msg": 'Invoice resent successfully!', 'info': mailinfo.info });
