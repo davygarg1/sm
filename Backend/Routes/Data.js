@@ -8,7 +8,28 @@ const Blog = require("../Models/Blog");
 const Testimonials = require("../Models/Testimonials");
 const fetchuser = require('../Middleware/fetchtoken');
 const Consultations = require("../Models/Consultations");
+const Invoice = require("../Models/Invoice");
+const fetchtoken = require("../Middleware/fetchtoken");
 
+
+router.get('/Invoiceall', fetchtoken, async (req, res) => {
+    try {
+        // If a user ID is provided in the query, fetch invoices for that user
+        const { User } = req.query;
+
+        let invoices;
+        if (User) {
+            invoices = await Invoice.find({ User }).populate('User');
+        } else {
+            invoices = await Invoice.find().populate('User');
+        }
+
+        res.json(invoices);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Server Error');
+    }
+});
 
 router.get("/Doctor", async (req, res) => {
 	try {

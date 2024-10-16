@@ -1,11 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.set('strictQuery', true);
-const Testimonials = require('./Models/Testimonials');
-const Consultation = require('./Models/Consultations');
-const Treatments = require('./Models/Treatments');
-const Doctor = require('./Models/Doctor');
-const User = require('./Models/User');
-const Blog = require('./Models/Blog');
+// mongoose.set('strictQuery', true);
 require('dotenv').config();
 
 const dbConnectionString = process.env.DB_CONNECTION_STRING;

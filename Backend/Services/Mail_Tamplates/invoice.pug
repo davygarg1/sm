@@ -1,0 +1,54 @@
+doctype html
+html
+  head
+    title Invoice - Samarpitam Chikitsalaya
+    style
+      | body { font-family: Arial, sans-serif; padding: 20px; }
+      | .container { background-color: #fff; padding: 20px; border-radius: 10px; max-width: 600px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+      | .header { text-align: center; padding: 10px 0; border-bottom: 2px solid #003366; }
+      | .header h1 { color: #003366; }
+      | .details { margin: 20px 0; }
+      | table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+      | th, td { border: 1px solid #dddddd; padding: 8px; text-align: left; }
+      | th { background-color: #f2f2f2; }
+      | .footer { text-align: center; margin-top: 20px; }
+      | .footer p { margin: 0; color: #888; }
+      | .advertisement { text-align: center; margin-top: 20px; }
+      | .advertisement a { color: #003366; text-decoration: none; font-weight: bold; }
+  body
+    .container
+      .header
+        h1 Samarpitam Chikitsalaya
+        p Invoice for Medical Consultation
+
+      .details
+        p Date: #{currentDate}
+        p Invoice Id: #{Invoiceres._id}
+        p Amount: ₹#{totalAmount}
+        p Payment Method: #{payment}
+
+      .patient-details
+        h2 Patient Information
+        p Name: #{consultation.name}
+        p Phone: #{consultation.phone}
+        p Email: #{consultation.email}
+        p Address: #{address}
+
+      table
+        thead
+          tr
+            th Description
+            th Amount
+        tbody
+          tr
+            td #{treatment}
+            td ₹#{totalAmount}
+
+      .footer
+        p Thank you for choosing Samarpitam Chikitsalaya
+        p Terms and Conditions apply.
+
+      // Advertisement section with a link to the website
+      .advertisement
+        p For more services, visit:
+        a(href="https://samarpitam.com") Samarpitam Chikitsalaya Website

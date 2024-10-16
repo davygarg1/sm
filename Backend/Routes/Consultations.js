@@ -12,25 +12,29 @@ const fs = require('fs');
 const path_book = '../Backend/Services/Mail_Tamplates/Consultation_book.html';
 const fetchuser = require('../Middleware/fetchtoken');
 const limiter = require('../Middleware/limiter')
+const pug = require('pug');
+const htmlPdf = require('html-pdf'); // To generate PDF
+const path = require('path');
+const Invoice = require("../Models/Invoice");
 
 
 function Mailsendstatus(Status, Data) {
 
 	if (Status == 1) {
 
-			fs.readFile(path_book, 'utf8', (err, data) => {
-				if (err) {
-					console.error('Error reading HTML file:', err);
-				} else if (Data.email) {
-					const mail_data = {};
-					mail_data.to = Data.email;
-					mail_data.from = "secure.services@samarpitam.com";
-					mail_data.head = "Samarpitam";
-					mail_data.subject = "Consultation booking intialized";
-					mail_data.html = data;
-					Mail(mail_data);
-				};
-			});
+		fs.readFile(path_book, 'utf8', (err, data) => {
+			if (err) {
+				console.error('Error reading HTML file:', err);
+			} else if (Data.email) {
+				const mail_data = {};
+				mail_data.to = Data.email;
+				mail_data.from = "secure.services@samarpitam.com";
+				mail_data.head = "Samarpitam";
+				mail_data.subject = "Consultation booking intialized";
+				mail_data.html = data;
+				Mail(mail_data);
+			};
+		});
 
 	} else if (Status == 2 && Data.email) {
 		const mail_data = {};
@@ -38,8 +42,8 @@ function Mailsendstatus(Status, Data) {
 		mail_data.from = "secure.services@samarpitam.com";
 		mail_data.head = "Samarpitam";
 		mail_data.subject = "Payment Received For Consultation Booking";
-		mail_data.html = 
-		`<!DOCTYPE html>
+		mail_data.html =
+			`<!DOCTYPE html>
 		<html lang="en">
 		<head>
 			<meta charset="UTF-8">
@@ -69,7 +73,7 @@ function Mailsendstatus(Status, Data) {
 		</body>
 		</html>`;
 		Mail(mail_data);
-		
+
 	} else if (Status == 3 && Data.email) {
 		function convertTodate(timestamp) {
 			const date = new Date(timestamp);
@@ -114,7 +118,7 @@ function Mailsendstatus(Status, Data) {
 		</body>
 		</html>`;
 		MailC(mail_data);
-		
+
 	} else if (Status == 4 && Data.email) {
 		const mail_data = {};
 		mail_data.to = Data.email;
@@ -195,9 +199,9 @@ router.post("/Book",
 			// checking service is active now or not
 
 			const Treatments_check = await Treatments.findOne({ _id: service });
-			if (Treatments_check) {	
-				booking_data.service = Treatments_check._id ;
-				booking_data.servicename = Treatments_check.name ;
+			if (Treatments_check) {
+				booking_data.service = Treatments_check._id;
+				booking_data.servicename = Treatments_check.name;
 			}
 
 			// book Consultation in mongodb
@@ -329,7 +333,7 @@ router.get("/status/:phone",
 	async (req, res) => {
 		try {
 
-			let Data = await Consultation.find({ phone: req.params.phone , active: true });
+			let Data = await Consultation.find({ phone: req.params.phone, active: true });
 			if (Data.length > 0) {
 				res.json({ "error": "false", Data })
 			} else {
@@ -399,7 +403,7 @@ router.post("/Consultations_update/",
 				if (treatment) { NewUser.servicename = treatment }
 				if (Status == 1) { NewUser.status = "booking intialized" }
 				if (Status == 2) { NewUser.status = "Payment Received" }
-				if (Status == 3) { NewUser.status = "Slot confirmed" , NewUser.slot = slot }
+				if (Status == 3) { NewUser.status = "Slot confirmed", NewUser.slot = slot }
 				if (Status == 4) { NewUser.status = "Consultation completed", NewUser.active = false }
 
 
@@ -416,6 +420,159 @@ router.post("/Consultations_update/",
 			return res.status(500).json({ "error": error.message, "msg": "Intarnal server error" });
 		}
 	});
+
+// Route to send invoice
+router.post('/send_invoice',fetchuser, [
+    // Validation rules
+    body('id').notEmpty().withMessage('Consultation ID is required'),
+    body('amount').isNumeric().withMessage('Amount must be a number'),
+    body('payment').notEmpty().withMessage('Payment method is required'),
+    body('treatment').notEmpty().withMessage('Treatment details are required'),
+    body('address').notEmpty().withMessage('Address is required'),
+    body('email').isEmail().withMessage('A valid email is required') // Email validation
+],  async (req, res) => {
+
+	try {
+
+		 // Check for validation errors
+		 const errors = validationResult(req);
+		 if (!errors.isEmpty()) {
+			 return res.status(400).json({ errors: errors.array() });
+		 }
+		 
+		const { id, amount, payment, treatment, address , email } = req.body;
+		const consultationId = id;
+
+		// Fetch consultation details
+		const consultation = await Consultation.findById(consultationId);
+
+		if (!consultation) {
+			return res.status(404).json({ "error": "true", "msg": 'Consultation not found' });
+		}
+
+		const Invoiceres = await Invoice.create({ amount, payment, treatment, address, email, 'User':consultationId });
+
+		// Render invoice template using Pug (or any template engine)
+		const invoiceHtml = pug.renderFile(path.join(__dirname, '../Services/Mail_Tamplates/invoice.pug'), {
+			consultation: consultation,
+			currentDate: new Date().toLocaleDateString(),
+			payment, treatment, Invoiceres, address,
+			totalAmount: amount, // Dynamically calculated total amount
+		});
+
+		// Path to save the PDF
+        const pdfPath = path.join(__dirname, `../invoices/invoice_${consultation._id}.pdf`);
+
+		// Generate PDF from the rendered HTML
+		htmlPdf.create(invoiceHtml, { format: 'A4' }).toFile(pdfPath, async (err, pdf) => {
+			if (err) {
+				console.error('Error generating PDF:', err);
+				return res.status(500).json({ message: 'Error generating PDF' });
+			}
+
+			// If email is available, send the email with invoice
+			if (consultation) {
+				const mail_data = {
+					to: consultation.email || email || "SamarpitamChikitsalaya@gmail.com",
+					cc: ["SamarpitamChikitsalaya@gmail.com"],
+					from: "consultation@samarpitam.com",
+					head: "Samarpitam Chikitsalaya",
+					subject: `Invoice for Consultation on Samarpitam`,
+					html: invoiceHtml,
+					attachments: [
+						{
+							filename: `invoice_${consultation._id}.pdf`, // Attach invoice in PDF format
+							path: pdfPath,
+							contentType: 'application/pdf',
+						},
+					],
+				};
+
+				// Send email via MailC
+				let mailinfo =  await MailC(mail_data);
+
+				if (mailinfo.sent) {			
+					return res.status(200).json({ "error": "false", "msg": 'Invoice sent successfully!', 'info':mailinfo.info });
+				} else {
+					return res.status(200).json({ "error": "false", "msg": 'Invoice sent successfully!', 'info':mailinfo.error });
+				}
+
+			} else {
+				return res.status(400).json({ "error": "true", "msg": 'No consultation provided' });
+			}
+
+		});
+
+	} catch (error) {
+		return res.status(500).json({ "error": error.message, "msg": 'Error sending invoice' });
+	}
+});
+
+// Route to resend invoice with invoice ID in the URL
+router.get('/resend_invoice/:invoiceId', fetchuser, async (req, res) => {
+
+    try {
+        const { invoiceId } = req.params; // Get invoiceId from the URL
+
+        // Fetch the invoice by ID
+        const Invoiceres = await Invoice.findById(invoiceId).populate('User');
+
+        if (!Invoiceres) {
+            return res.status(404).json({ "error": "true", "msg": 'Invoice not found' });
+        }
+
+        // Render invoice template using Pug (or any template engine)
+        const invoiceHtml = pug.renderFile(path.join(__dirname, '../Services/Mail_Tamplates/invoice.pug'), {
+			consultation: Invoiceres.User,
+			currentDate: new Date().toLocaleDateString(),
+			Invoiceres,
+			totalAmount: Invoiceres.amount,
+			payment: Invoiceres.payment, 
+            treatment: Invoiceres.treatment, 
+			address: Invoiceres.address,
+        });
+
+        // Path to save the PDF
+        const pdfPath = path.join(__dirname, `../invoices/invoice_${Invoiceres.User._id}.pdf`);
+
+        // Generate PDF from the rendered HTML
+        htmlPdf.create(invoiceHtml, { format: 'A4' }).toFile(pdfPath, async (err, pdf) => {
+            if (err) {
+                console.error('Error generating PDF:', err);
+                return res.status(500).json({ message: 'Error generating PDF' });
+            }
+
+            // Prepare the email data
+            const mail_data = {
+                to: Invoiceres.email || "SamarpitamChikitsalaya@gmail.com",
+                cc: ["SamarpitamChikitsalaya@gmail.com"],
+                from: "consultation@samarpitam.com",
+                head: "Samarpitam Chikitsalaya",
+                subject: `Resent Invoice for Consultation on Samarpitam`,
+                html: invoiceHtml,
+                attachments: [
+                    {
+                        filename: `invoice_${Invoiceres.User._id}.pdf`, // Attach invoice in PDF format
+                        path: pdfPath,
+                        contentType: 'application/pdf',
+                    },
+                ],
+            };
+
+            // Send email via MailC
+            let mailinfo = await MailC(mail_data);
+
+            if (mailinfo.sent) {			
+                return res.status(200).json({ "error": "false", "msg": 'Invoice resent successfully!', 'info': mailinfo.info });
+            } else {
+                return res.status(500).json({ "error": "true", "msg": 'Error sending email', 'info': mailinfo.error });
+            }
+        });
+
+    } catch (error) {
+        return res.status(500).json({ "error": error.message, "msg": 'Error resending invoice' });
+    }
+});
 
 
 module.exports = router;

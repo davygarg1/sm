@@ -20,7 +20,7 @@ function ListServices({ Data, openModal }) {
 		"GYNAE": { src: GYNAE },	
 		"HEART": { src: HEART },	
 		"HORMONE": { src: HORMONE },	
-		"JOINTPAIN": { src: JOINTPAIN },	
+		"JOINT PAIN": { src: JOINTPAIN },	
 		"KIDNEY": { src: KIDNEY },	
 		"LIVER": { src: LIVER },	
 		"NEUROLOGICAL": { src: NEUROLOGICAL },	
