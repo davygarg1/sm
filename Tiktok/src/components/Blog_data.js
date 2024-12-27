@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import DATA from '../Context/DATA/data_context'
 import Modal_book from './modal_book'
 import bg from '../Assets/Images/Blog_info/bg.jpg'
-import PCOS from '../Assets/Images/Blog_info/PCOD.png';
+import PCOS from '../Assets/Images/Blog_info/pcod.png';
 import leucorrhea from '../Assets/Images/Blog_info/leucorrhea.png';
 import Kidney from '../Assets/Images/Blog_info/Kidney.png';
 import ULCERATIVE from '../Assets/Images/Blog_info/ULCERATIVE.png';
