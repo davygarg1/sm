@@ -12,8 +12,8 @@ function DATA(props) {
     const [Testimonials, setTestimonials] = useState({});
     const [Blog_data, setBlog_data] = useState({});
     const [Blog, setBlog] = useState({});
-    // const host = 'http://localhost:5000';
-    const host = 'https://api.samarpitam.com';
+    const host = 'http://localhost:5000';
+    // const host = 'https://api.samarpitam.com';
     const Contextdata = useContext(API);
     const { openNotificationWithIcon } = Contextdata;
 

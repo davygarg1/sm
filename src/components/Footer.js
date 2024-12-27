@@ -14,7 +14,7 @@ function Footer() {
 		{ name: "Our Team", to: "/Doctor" },
 	];
 
-	const phoneNumber = '9815209389';
+	const phoneNumber = '7814817888';
 
 	const handleClick = () => {
 		navigator.clipboard.writeText(phoneNumber);
@@ -60,8 +60,8 @@ function Footer() {
 							</h2>
 							<ul className="text-gray-500 font-extralight md:font-medium md:tex-sm">
 								<li className="mb-4" onClick={() => handleClick()}>
-									<Link to="tel:9815209389" className="hover:text-blue-500">
-										9815209389
+									<Link to="tel:7814817888" className="hover:text-blue-500">
+										7814817888
 									</Link>
 								</li>
 								<li>
@@ -124,7 +124,7 @@ function Footer() {
 
 								<span className="sr-only">Youtube account</span>
 							</Link>
-							<Link to={"https://wa.me/9815209389"} className="text-gray-500 hover:text-white dark:hover:text-white ms-5">
+							<Link to={"https://wa.me/7814817888"} className="text-gray-500 hover:text-white dark:hover:text-white ms-5">
 								<WhatsAppOutlined />
 
 								<span className="sr-only">Whatsapp account</span>

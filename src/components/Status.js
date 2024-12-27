@@ -66,7 +66,7 @@ function Status() {
                         </div>
                     </div>,
                     <Link to={'/'}><Button type="primary" key="console" className="bg-sky-800 border-4 h-10 text-slate-50 w-28 m-4"> Go Home </Button></Link>,
-                    <Link to={"https://wa.me/9815209389"} > <Button type="primary" key="console" className="bg-sky-800 border-4 h-10 text-slate-50 w-36 m-4"> Chat on Whatsapp </Button></Link>,
+                    <Link to={"https://wa.me/7814817888"} > <Button type="primary" key="console" className="bg-sky-800 border-4 h-10 text-slate-50 w-36 m-4"> Chat on Whatsapp </Button></Link>,
                 ]}
             />
 
