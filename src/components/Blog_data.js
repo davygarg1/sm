@@ -16,7 +16,7 @@ import Asthma from '../Assets/Images/Blog_info/Asthma.png';
 import Sinusitis from '../Assets/Images/Blog_info/Sinusitis.png';
 import Migraine from '../Assets/Images/Blog_info/Migraine.png';
 import Thyroid from '../Assets/Images/Blog_info/Thyroid.png';
-import Obesity from '../Assets/Images/Blog_info/Obesity.png';
+import Obesity from '../Assets/Images/Blog_info/obesity.png';
 import Vitiligo from '../Assets/Images/Blog_info/Vitiligo.png';
 import Psoriasis from '../Assets/Images/Blog_info/Psoriasis.png';
 import Hypertension from '../Assets/Images/Blog_info/Hypertension.png';
