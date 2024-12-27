@@ -87,7 +87,7 @@ function Dashboard() {
 
                 <div className='w-full h-4/6 flex flex-col md:flex-row justify-center items-center text-center'>
                     <div className="w-full h-2/6 md:h-full md:w-2/6 flex items-center justify-center">
-                        <Link to="https://wa.me/9815209389">
+                        <Link to="https://wa.me/7814817888">
                         <div className='w-full h-full flex flex-col items-center'>
                             <span className='p-6 bg-gray-700 rounded-lg'><WhatsAppOutlined className='scale-150 text-white' /></span>
                             <p className='pt-4 text-2xl font-bold'>Connect</p>
@@ -101,7 +101,7 @@ function Dashboard() {
                             <span className='p-6 bg-gray-700 rounded-lg'><SolutionOutlined className='scale-150 text-white' /></span>
                             <p className='pt-4 text-2xl font-bold'>Health Coach</p>
                             <p className='p-4 text-sm font-normal'>Health Coach will be Assigned to you.</p>
-                            {/* <p className='text-sm font-semibold p-2 text-blue-500 border border-solid border-white rounded-md hover:text-white cursor-pointer'>9815209389</p> */}
+                            {/* <p className='text-sm font-semibold p-2 text-blue-500 border border-solid border-white rounded-md hover:text-white cursor-pointer'>7814817888</p> */}
                         </div>
                     </div>
                     <div className="w-full h-2/6 md:h-full md:w-2/6 flex items-center justify-center">
@@ -109,7 +109,7 @@ function Dashboard() {
                             <span className='p-6 bg-gray-700 rounded-lg'><ScheduleOutlined className='scale-150 text-white' /></span>
                             <p className='pt-4 text-2xl font-bold'>Appointment</p>
                             <p className='p-4 text-sm font-normal'>At your convenient time with Samarpitam.</p>
-                            {/* <p className='text-sm font-semibold p-2 text-blue-500 border border-solid border-white rounded-md hover:text-white cursor-pointer'>9815209389</p> */}
+                            {/* <p className='text-sm font-semibold p-2 text-blue-500 border border-solid border-white rounded-md hover:text-white cursor-pointer'>7814817888</p> */}
                         </div>
                     </div>
                     <div className="w-full h-2/6 md:h-full md:w-2/6 flex items-center justify-center">
@@ -117,7 +117,7 @@ function Dashboard() {
                             <span className='p-6 bg-gray-700 rounded-lg'><TeamOutlined className='scale-150 text-white' /></span>
                             <p className='pt-4 text-2xl font-bold'>Consult</p>
                             <p className='p-4 text-sm font-normal'>Receive Personalised Doctor Consultation.</p>
-                            {/* <Link to={"https://wa.me/9815209389"} ><p className='text-sm font-semibold p-2 text-blue-500 border border-solid border-white  rounded-md hover:text-white cursor-pointer'>Chat on Whatsapp</p></Link> */}
+                            {/* <Link to={"https://wa.me/7814817888"} ><p className='text-sm font-semibold p-2 text-blue-500 border border-solid border-white  rounded-md hover:text-white cursor-pointer'>Chat on Whatsapp</p></Link> */}
                         </div>
                     </div>
                 </div>

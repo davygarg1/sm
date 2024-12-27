@@ -60,7 +60,7 @@ function Contact() {
 							<p className='pt-4 text-2xl font-bold'>Call us:</p>
 							<p className='p-4 text-sm font-normal text-justify'>Book Your consultation anytime from anywhere it may be a phone call , video call or clinic consultation.
 </p>
-							<p className='text-sm font-semibold p-2 text-blue-500 border border-solid border-white rounded-md hover:text-white cursor-pointer'>9815209389</p>
+							<p className='text-sm font-semibold p-2 text-blue-500 border border-solid border-white rounded-md hover:text-white cursor-pointer'>7814817888</p>
 						</div>
 					</div>
 					<div className="w-full h-2/6 md:h-full md:w-2/6 flex items-center justify-center">
@@ -68,7 +68,7 @@ function Contact() {
 							<span className='p-6 bg-gray-700 rounded-lg'><WhatsAppOutlined className='scale-150' /></span>
 							<p className='pt-4 text-2xl font-bold'>Support</p>
 							<p className='p-4 text-sm font-normal text-justify'>For any kind of query related to appointment , delivery timing of medicine contact our support team.</p>
-							<Link to={"https://wa.me/9815209389"} ><p className='text-sm font-semibold p-2 text-blue-500 border border-solid border-white  rounded-md hover:text-white cursor-pointer'>Chat on Whatsapp</p></Link>
+							<Link to={"https://wa.me/7814817888"} ><p className='text-sm font-semibold p-2 text-blue-500 border border-solid border-white  rounded-md hover:text-white cursor-pointer'>Chat on Whatsapp</p></Link>
 						</div>
 					</div>
 				</div>
