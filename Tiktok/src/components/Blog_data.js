@@ -6,7 +6,7 @@ import bg from '../Assets/Images/Blog_info/bg.jpg'
 import PCOS from '../Assets/Images/Blog_info/pcod.png';
 import leucorrhea from '../Assets/Images/Blog_info/leucorrhea.png';
 import Kidney from '../Assets/Images/Blog_info/Kidney.png';
-import ULCERATIVE from '../Assets/Images/Blog_info/ULCERATIVE.png';
+import ULCERATIVE from '../Assets/Images/Blog_info/Ulcerative.png';
 import Irritable from '../Assets/Images/Blog_info/Irritable.png';
 import Depression from '../Assets/Images/Blog_info/Depression.png';
 import piles from '../Assets/Images/Blog_info/piles.png';
