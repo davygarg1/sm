@@ -30,7 +30,7 @@ function Footer() {
 							<Link to="https://Samarpitam.com/" className="flex items-center">
 								<img src={Logo} className="h-8 me-3 rounded-full bg-white" alt="Samarpitam Logo" />
 								<span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
-									Samarpitam
+									Samarpitam by tiktokhd
 								</span>
 							</Link>
 							<br />
